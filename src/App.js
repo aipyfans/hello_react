@@ -4,6 +4,7 @@ import './App.css';
 
 import Form from "./other/Form";
 import Table from "./other/Table";
+import Html5 from "./other/Html5";
 
 class App extends Component {
 
@@ -20,7 +21,7 @@ class App extends Component {
                     To get started, edit <code>src/App.js</code> and save to reload.
                 </p>
 
-                <Table/>
+                <Html5/>
 
             </div>
         );

@@ -7,6 +7,9 @@ class Table extends Component {
     render() {
         return (
             <table >
+
+                <caption>表格标题</caption>
+
                 <tr>
                     <th>City</th>
                     <th>Date</th>
@@ -31,6 +34,44 @@ class Table extends Component {
                     <td>50</td>
                     <td>3/5</td>
                 </tr>
+                <tr>
+                    <td>Bountiful, UT</td>
+                    <td>July 10th</td>
+                    <td>91</td>
+                    <td>4,226 ft</td>
+                    <td>41,173</td>
+                    <td>4/5</td>
+                </tr>
+                <tr>
+                    <td>Last Chance, CO</td>
+                    <td>July 23rd</td>
+                    <td>102</td>
+                    <td>4,780 ft</td>
+                    <td>265</td>
+                    <td>3/5</td>
+                </tr>
+                <tr>
+                    <td rowSpan="2">Truth or Consequences, NM</td>
+                    <td>August 9th</td>
+                    <td>93</td>
+                    <td rowSpan="2">4,242 ft</td>
+                    <td rowSpan="2">7,289</td>
+                    <td>5/5</td>
+                </tr>
+                <tr>
+                    <td>August 9th</td>
+                    <td>93</td>
+                    <td>5/5</td>
+                </tr>
+                <tr>
+                    <td>Why, AZ</td>
+                    <td>August 18th</td>
+                    <td>104</td>
+                    <td>860 ft</td>
+                    <td>480</td>
+                    <td>3/5</td>
+                </tr>
+
             </table>
         );
     }
