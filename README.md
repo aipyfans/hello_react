@@ -1,75 +1,83 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
+这个项目是由`Create React App`工具引导创建。
+
+
 Below you will find some information on how to perform common tasks.<br>
+
+下面你会找到一些有关如何执行常见任务的信息。
+
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
-## Table of Contents
+您可以在这里找到本指南的最新版本。
 
-- [Updating to New Releases](#updating-to-new-releases)
-- [Sending Feedback](#sending-feedback)
-- [Folder Structure](#folder-structure)
-- [Available Scripts](#available-scripts)
+## Table of Contents(目录)
+
+- [Updating to New Releases](#updating-to-new-releases) 更新到新版本
+- [Sending Feedback](#sending-feedback) 发送反馈
+- [Folder Structure](#folder-structure) 文件夹结构
+- [Available Scripts](#available-scripts) 可用脚本
   - [npm start](#npm-start)
   - [npm test](#npm-test)
   - [npm run build](#npm-run-build)
   - [npm run eject](#npm-run-eject)
-- [Supported Language Features and Polyfills](#supported-language-features-and-polyfills)
-- [Syntax Highlighting in the Editor](#syntax-highlighting-in-the-editor)
-- [Displaying Lint Output in the Editor](#displaying-lint-output-in-the-editor)
-- [Debugging in the Editor](#debugging-in-the-editor)
-- [Changing the Page `<title>`](#changing-the-page-title)
-- [Installing a Dependency](#installing-a-dependency)
-- [Importing a Component](#importing-a-component)
-- [Code Splitting](#code-splitting)
-- [Adding a Stylesheet](#adding-a-stylesheet)
-- [Post-Processing CSS](#post-processing-css)
-- [Adding a CSS Preprocessor (Sass, Less etc.)](#adding-a-css-preprocessor-sass-less-etc)
-- [Adding Images, Fonts, and Files](#adding-images-fonts-and-files)
-- [Using the `public` Folder](#using-the-public-folder)
-  - [Changing the HTML](#changing-the-html)
-  - [Adding Assets Outside of the Module System](#adding-assets-outside-of-the-module-system)
-  - [When to Use the `public` Folder](#when-to-use-the-public-folder)
-- [Using Global Variables](#using-global-variables)
-- [Adding Bootstrap](#adding-bootstrap)
-  - [Using a Custom Theme](#using-a-custom-theme)
-- [Adding Flow](#adding-flow)
-- [Adding Custom Environment Variables](#adding-custom-environment-variables)
-  - [Referencing Environment Variables in the HTML](#referencing-environment-variables-in-the-html)
-  - [Adding Temporary Environment Variables In Your Shell](#adding-temporary-environment-variables-in-your-shell)
-  - [Adding Development Environment Variables In `.env`](#adding-development-environment-variables-in-env)
-- [Can I Use Decorators?](#can-i-use-decorators)
-- [Integrating with an API Backend](#integrating-with-an-api-backend)
+- [Supported Language Features and Polyfills](#supported-language-features-and-polyfills) 支持的语言功能和Polyfills (Polyfills是Remy Sharp提出的一个术语，用来补充因缺乏对新API支持而缺失的功能。)
+- [Syntax Highlighting in the Editor](#syntax-highlighting-in-the-editor) 编辑器中的语法突出显示
+- [Displaying Lint Output in the Editor](#displaying-lint-output-in-the-editor) 在编辑器中显示Lint输出
+- [Debugging in the Editor](#debugging-in-the-editor) 在编辑器中调试
+- [Changing the Page `<title>`](#changing-the-page-title) 更改页面`<title>`
+- [Installing a Dependency](#installing-a-dependency) 安装依赖
+- [Importing a Component](#importing-a-component) 导入组件
+- [Code Splitting](#code-splitting) 代码拆分
+- [Adding a Stylesheet](#adding-a-stylesheet) 添加样式表
+- [Post-Processing CSS](#post-processing-css) CSS后期处理
+- [Adding a CSS Preprocessor (Sass, Less etc.)](#adding-a-css-preprocessor-sass-less-etc) 添加CSS预处理器（Sass，Less等）
+- [Adding Images, Fonts, and Files](#adding-images-fonts-and-files) 添加图像，字体和文件
+- [Using the `public` Folder](#using-the-public-folder) 使用`public`文件夹
+  - [Changing the HTML](#changing-the-html) 更改HTML
+  - [Adding Assets Outside of the Module System](#adding-assets-outside-of-the-module-system) 在模块系统之外添加资源
+  - [When to Use the `public` Folder](#when-to-use-the-public-folder) 何时使用`public`文件夹
+- [Using Global Variables](#using-global-variables) 使用全局变量
+- [Adding Bootstrap](#adding-bootstrap) 添加引导
+  - [Using a Custom Theme](#using-a-custom-theme) 使用自定义主题
+- [Adding Flow](#adding-flow) 添加流
+- [Adding Custom Environment Variables](#adding-custom-environment-variables) 添加自定义环境变量
+  - [Referencing Environment Variables in the HTML](#referencing-environment-variables-in-the-html) 引用HTML中的环境变量
+  - [Adding Temporary Environment Variables In Your Shell](#adding-temporary-environment-variables-in-your-shell) 在Shell中添加临时环境变量
+  - [Adding Development Environment Variables In `.env`](#adding-development-environment-variables-in-env) 在`.env`中添加开发环境变量
+- [Can I Use Decorators?](#can-i-use-decorators) 我可以使用装饰器吗？
+- [Integrating with an API Backend](#integrating-with-an-api-backend) 与后端API集成
   - [Node](#node)
   - [Ruby on Rails](#ruby-on-rails)
-- [Proxying API Requests in Development](#proxying-api-requests-in-development)
-  - ["Invalid Host Header" Errors After Configuring Proxy](#invalid-host-header-errors-after-configuring-proxy)
-  - [Configuring the Proxy Manually](#configuring-the-proxy-manually)
-- [Using HTTPS in Development](#using-https-in-development)
-- [Generating Dynamic `<meta>` Tags on the Server](#generating-dynamic-meta-tags-on-the-server)
-- [Pre-Rendering into Static HTML Files](#pre-rendering-into-static-html-files)
-- [Injecting Data from the Server into the Page](#injecting-data-from-the-server-into-the-page)
-- [Running Tests](#running-tests)
-  - [Filename Conventions](#filename-conventions)
-  - [Command Line Interface](#command-line-interface)
-  - [Version Control Integration](#version-control-integration)
-  - [Writing Tests](#writing-tests)
-  - [Testing Components](#testing-components)
-  - [Using Third Party Assertion Libraries](#using-third-party-assertion-libraries)
-  - [Initializing Test Environment](#initializing-test-environment)
-  - [Focusing and Excluding Tests](#focusing-and-excluding-tests)
-  - [Coverage Reporting](#coverage-reporting)
-  - [Continuous Integration](#continuous-integration)
-  - [Disabling jsdom](#disabling-jsdom)
-  - [Snapshot Testing](#snapshot-testing)
-  - [Editor Integration](#editor-integration)
-- [Making a Progressive Web App](#making-a-progressive-web-app)
-  - [Offline-First Considerations](#offline-first-considerations)
-  - [Progressive Web App Metadata](#progressive-web-app-metadata)
-- [Deployment](#deployment)
-  - [Static Server](#static-server)
-  - [Other Solutions](#other-solutions)
-  - [Serving Apps with Client-Side Routing](#serving-apps-with-client-side-routing)
-  - [Building for Relative Paths](#building-for-relative-paths)
+- [Proxying API Requests in Development](#proxying-api-requests-in-development) 在开发中代理API请求
+  - ["Invalid Host Header" Errors After Configuring Proxy](#invalid-host-header-errors-after-configuring-proxy) 配置代理后的“主机头无效”错误
+  - [Configuring the Proxy Manually](#configuring-the-proxy-manually) 手动配置代理
+- [Using HTTPS in Development](#using-https-in-development) 在开发中使用HTTPS
+- [Generating Dynamic `<meta>` Tags on the Server](#generating-dynamic-meta-tags-on-the-server) 在服务器上生成动态`<meta>`标签
+- [Pre-Rendering into Static HTML Files](#pre-rendering-into-static-html-files) 预渲染成静态HTML文件
+- [Injecting Data from the Server into the Page](#injecting-data-from-the-server-into-the-page) 将数据从服务器注入页面
+- [Running Tests](#running-tests) 运行测试
+  - [Filename Conventions](#filename-conventions) 文件名会话
+  - [Command Line Interface](#command-line-interface) 命令行界面
+  - [Version Control Integration](#version-control-integration) 版本控制集成
+  - [Writing Tests](#writing-tests) 写测试
+  - [Testing Components](#testing-components) 测试组件
+  - [Using Third Party Assertion Libraries](#using-third-party-assertion-libraries) 使用第三方断言库
+  - [Initializing Test Environment](#initializing-test-environment) 初始化测试环境
+  - [Focusing and Excluding Tests](#focusing-and-excluding-tests) 聚焦和排除测试
+  - [Coverage Reporting](#coverage-reporting) 覆盖报告
+  - [Continuous Integration](#continuous-integration) 持续整合
+  - [Disabling jsdom](#disabling-jsdom) 禁用jsdom
+  - [Snapshot Testing](#snapshot-testing) 快照测试
+  - [Editor Integration](#editor-integration) 编辑器集成
+- [Making a Progressive Web App](#making-a-progressive-web-app) 制作一个渐进的Web应用程序
+  - [Offline-First Considerations](#offline-first-considerations) 离线优先注意事项
+  - [Progressive Web App Metadata](#progressive-web-app-metadata) 不断改进的Web应用程序元数据
+- [Deployment](#deployment) 部署
+  - [Static Server](#static-server) 静态服务器
+  - [Other Solutions](#other-solutions) 其他解决方案
+  - [Serving Apps with Client-Side Routing](#serving-apps-with-client-side-routing) 使用客户端路由的服务应用程序
+  - [Building for Relative Paths](#building-for-relative-paths) 相对路径建设
   - [Azure](#azure)
   - [Firebase](#firebase)
   - [GitHub Pages](#github-pages)
@@ -79,39 +87,60 @@ You can find the most recent version of this guide [here](https://github.com/fac
   - [Now](#now)
   - [S3 and CloudFront](#s3-and-cloudfront)
   - [Surge](#surge)
-- [Advanced Configuration](#advanced-configuration)
-- [Troubleshooting](#troubleshooting)
-  - [`npm start` doesn’t detect changes](#npm-start-doesnt-detect-changes)
-  - [`npm test` hangs on macOS Sierra](#npm-test-hangs-on-macos-sierra)
-  - [`npm run build` silently fails](#npm-run-build-silently-fails)
-  - [`npm run build` fails on Heroku](#npm-run-build-fails-on-heroku)
-  - [Moment.js locales are missing](#momentjs-locales-are-missing)
-- [Something Missing?](#something-missing)
+- [Advanced Configuration](#advanced-configuration) 高级配置
+- [Troubleshooting](#troubleshooting) 故障排除
+  - [`npm start` doesn’t detect changes](#npm-start-doesnt-detect-changes) `npm start`不能检测到更改
+  - [`npm test` hangs on macOS Sierra](#npm-test-hangs-on-macos-sierra) `npm test`挂在macOS Sierra上
+  - [`npm run build` silently fails](#npm-run-build-silently-fails) `npm run build`默认失败
+  - [`npm run build` fails on Heroku](#npm-run-build-fails-on-heroku) `npm run build`在Heroku上失败
+  - [Moment.js locales are missing](#momentjs-locales-are-missing) Moment.js语言环境丢失
+- [Something Missing?](#something-missing) 还缺少什么？
 
 ## Updating to New Releases
+### 更新到新版本
 
 Create React App is divided into two packages:
 
+创建React应用程序分为两个包：
+
 * `create-react-app` is a global command-line utility that you use to create new projects.
+* `create-react-app` 是用于创建新项目的全局命令行实用工具.
 * `react-scripts` is a development dependency in the generated projects (including this one).
+* `react-scripts` 是用于生成项目的开发依赖（包括这个项目）.
 
 You almost never need to update `create-react-app` itself: it delegates all the setup to `react-scripts`.
 
+您几乎不需要更新 `create-react-app` 本身：它将所有设置委托给 `react-scripts`.
+
 When you run `create-react-app`, it always creates the project with the latest version of `react-scripts` so you’ll get all the new features and improvements in newly created apps automatically.
+
+当您运行`create-react-app`时，它始终使用最新版本的`react-scripts`创建项目，以便您自动获得新创建的应用程序的所有新功能和改进。
 
 To update an existing project to a new version of `react-scripts`, [open the changelog](https://github.com/facebookincubator/create-react-app/blob/master/CHANGELOG.md), find the version you’re currently on (check `package.json` in this folder if you’re not sure), and apply the migration instructions for the newer versions.
 
+要将现有项目更新为新版本的`react-scripts`，请打开更改日志，找到当前版本（如果您不确定，请检查此文件夹中的 `package.json` ），然后应用更新的迁移说明版本。
+
 In most cases bumping the `react-scripts` version in `package.json` and running `npm install` in this folder should be enough, but it’s good to consult the [changelog](https://github.com/facebookincubator/create-react-app/blob/master/CHANGELOG.md) for potential breaking changes.
+
+在大多数情况下，在package.json中更改`react-scripts`版本并在此文件夹中运行`npm install`应该是可以顺利更新的，但是对于潜在的突破性更改，请参考更改日志。
 
 We commit to keeping the breaking changes minimal so you can upgrade `react-scripts` painlessly.
 
+我们致力于保持最小化的变化，从而可以无痛地升级`react-scripts`。
+
 ## Sending Feedback
+### 发送反馈
 
 We are always open to [your feedback](https://github.com/facebookincubator/create-react-app/issues).
 
+我们总是对您的反馈开放。
+
 ## Folder Structure
+### 文件夹结构
 
 After creation, your project should look like this:
+
+创建后，您的项目结构应如下所示：
 
 ```
 my-app/
@@ -132,36 +161,63 @@ my-app/
 
 For the project to build, **these files must exist with exact filenames**:
 
+对于要构建的项目，**这些文件必须存在精确的文件名**：
+
 * `public/index.html` is the page template;
+* `public/index.html` 是页面模板;
 * `src/index.js` is the JavaScript entry point.
+* `src/index.js` 是JavaScript入口点.
 
 You can delete or rename the other files.
+
+您可以删除或重命名其他文件。
 
 You may create subdirectories inside `src`. For faster rebuilds, only files inside `src` are processed by Webpack.<br>
 You need to **put any JS and CSS files inside `src`**, or Webpack won’t see them.
 
+您可以在`src`内创建子目录。对于更快的重建，只有`src`中的文件才能被Webpack处理.<br>
+您需要**将任何JS和CSS文件放在src中**，否则Webpack将不会看到它们。
+
 Only files inside `public` can be used from `public/index.html`.<br>
 Read instructions below for using assets from JavaScript and HTML.
+
+`public/index.html`中只能使用`public`内的文件.<br>
+阅读使用JavaScript和HTML资源的说明.
 
 You can, however, create more top-level directories.<br>
 They will not be included in the production build so you can use them for things like documentation.
 
+但是，您可以创建更多的顶级目录.<br>
+它们不会被包含在生产构建中，因此您可以将它们用于文档等内容.
+
 ## Available Scripts
+### 可用脚本
 
 In the project directory, you can run:
+
+在项目目录中，您可以运行：
 
 ### `npm start`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
+在开发模式下运行应用程序.<br>
+打开 [http://localhost:3000](http://localhost:3000)在浏览器中查看。
+
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
+
+如果进行修改，页面将重新加载.<br>
+您还将在控制台中看到任何lint错误。
 
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.<br>
 See the section about [running tests](#running-tests) for more information.
+
+以交互观察模式启动test runner.<br>
+有关更多信息，请参阅有关 [running tests](#running-tests) 的部分。
 
 ### `npm run build`
 
