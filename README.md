@@ -1043,10 +1043,10 @@ To add Flow to a Create React App project, follow these steps:
 
    ​
 
-1. 运行 `npm install --save-dev flow-bin` (或 `yarn add --dev flow-bin`)。
-2. 将 `"flow": "flow"` 添加到您的`package.json`的 `scripts` 部分。
-3. 运行 `npm run flow -- init` (或 `yarn flow -- init`)以在根目录中创建一个`.flowconfig`文件。
-4. 将 `// @flow` 添加到要进行类型检查的任何文件中（例如，到`src/App.js`）。
+5. 运行 `npm install --save-dev flow-bin` (或 `yarn add --dev flow-bin`)。
+6. 将 `"flow": "flow"` 添加到您的`package.json`的 `scripts` 部分。
+7. 运行 `npm run flow -- init` (或 `yarn flow -- init`)以在根目录中创建一个`.flowconfig`文件。
+8. 将 `// @flow` 添加到要进行类型检查的任何文件中（例如，到`src/App.js`）。
 
 Now you can run `npm run flow` (or `yarn flow`) to check the files for type errors. You can optionally use an IDE like [Nuclide](https://nuclide.io/docs/languages/flow/) for a better integrated experience. In the future we plan to integrate it into Create React App even more closely.
 
@@ -1126,7 +1126,7 @@ When you load the app in the browser and inspect the `<input>`, you will see its
 
 The above form is looking for a variable called `REACT_APP_SECRET_CODE` from the environment. In order to consume this value, we need to have it defined in the environment. This can be done using two ways: either in your shell or in a `.env` file. Both of these ways are described in the next few sections.
 
-上面的表单正在从环境中寻找一个名为`REACT_APP_SECRET_CODE`的变量。为了消耗这个值，我们需要在环境中定义它。这可以通过两种方式完成：在shell或`.env`文件中。这两种方法将在接下来的几节中进行描述。
+上面的表单正在从环境中寻找一个名为`REACT_APP_SECRET_CODE`的变量。为了消耗这个值，我们需要在环境中定义它。这可以通过两种方式完成：在`shell`或`.env`文件中。这两种方法将在接下来的几节中进行描述。
 
 Having access to the `NODE_ENV` is also useful for performing actions conditionally:
 
@@ -1160,13 +1160,20 @@ You can also access the environment variables starting with `REACT_APP_` in the 
 
 Note that the caveats from the above section apply:
 
+请注意，上述部分的注意事项适用于：
+
 * Apart from a few built-in variables (`NODE_ENV` and `PUBLIC_URL`), variable names must start with `REACT_APP_` to work.
+* 除了几个内置变量(`NODE_ENV` 和 `PUBLIC_URL`)，变量名必须以REACT_APP_开头。
 * The environment variables are injected at build time. If you need to inject them at runtime, [follow this approach instead](#generating-dynamic-meta-tags-on-the-server).
+* 环境变量在构建时注入。如果您需要在运行时注入它们，[请按照此方法](#generating-dynamic-meta-tags-on-the-server)。
 
 ### Adding Temporary Environment Variables In Your Shell
 
-Defining environment variables can vary between OSes. It’s also important to know that this manner is temporary for the
-life of the shell session.
+### 在Shell中添加临时环境变量
+
+Defining environment variables can vary between OSes. It’s also important to know that this manner is temporary for the life of the shell session.
+
+定义环境变量会根据操作系统而定。知道这种方式对于shell会话的生命是暂时的也很重要。
 
 #### Windows (cmd.exe)
 
@@ -1174,7 +1181,7 @@ life of the shell session.
 set REACT_APP_SECRET_CODE=abcdef&&npm start
 ```
 
-(Note: the lack of whitespace is intentional.)
+(Note: the lack of whitespace is intentional.)(注意：缺乏空白是有意的。)
 
 #### Linux, macOS (Bash)
 
@@ -1184,9 +1191,15 @@ REACT_APP_SECRET_CODE=abcdef npm start
 
 ### Adding Development Environment Variables In `.env`
 
+### 在`.env`添加开发环境变量
+
 >Note: this feature is available with `react-scripts@0.5.0` and higher.
+>
+>注意：此功能可用在react-scripts@0.5.0及更高版本。
 
 To define permanent environment variables, create a file called `.env` in the root of your project:
+
+要定义永久环境变量，请在项目的根目录中创建一个名为`.env`的文件：
 
 ```
 REACT_APP_SECRET_CODE=abcdef
@@ -1196,41 +1209,72 @@ REACT_APP_SECRET_CODE=abcdef
 
 #### What other `.env` files are can be used?
 
+### 还可以使用什么其他`.env`文件？
+
 >Note: this feature is **available with `react-scripts@1.0.0` and higher**.
+>
+>注意：此功能可用在react-scripts@1.0.0及更高版本。
 
 * `.env`: Default.
+* `.env`: 默认.
 * `.env.local`: Local overrides. **This file is loaded for all environments except test.**
+* `.env.local`: 本地覆盖。**该文件加载除了测试之外的所有环境**.
 * `.env.development`, `.env.test`, `.env.production`: Environment-specific settings.
+* `.env.development`, `.env.test`, `.env.production`: 环境特定设.
 * `.env.development.local`, `.env.test.local`, `.env.production.local`: Local overrides of environment-specific settings.
+* `.env.development.local`, `.env.test.local`, `.env.production.local`: 本地覆盖环境特定的设置.
 
 Files on the left have more priority than files on the right:
 
+左边的文件比右边的文件更优先：
+
 * `npm start`: `.env.development.local`, `.env.development`, `.env.local`, `.env`
 * `npm run build`: `.env.production.local`, `.env.production`, `.env.local`, `.env`
-* `npm test`: `.env.test.local`, `.env.test`, `.env` (note `.env.local` is missing)
+* `npm test`: `.env.test.local`, `.env.test`, `.env` (note `.env.local` is missing。缺少 `.env.local` )
 
 These variables will act as the defaults if the machine does not explicitly set them.<br>
 Please refer to the [dotenv documentation](https://github.com/motdotla/dotenv) for more details.
 
+如果机器没有明确设置它们，这些变量将作为默认值.<br>
+
+有关详细信息，请参阅[dotenv文档](https://github.com/motdotla/dotenv)。
+
 >Note: If you are defining environment variables for development, your CI and/or hosting platform will most likely need
 >these defined as well. Consult their documentation how to do this. For example, see the documentation for [Travis CI](https://docs.travis-ci.com/user/environment-variables/) or [Heroku](https://devcenter.heroku.com/articles/config-vars).
+>
+>注意：如果要定义用于开发的环境变量，则您的CI and/or 托管平台最有可能需要这些定义。请咨询他们的文档如何做到这一点。例如，请参阅 [Travis CI](https://docs.travis-ci.com/user/environment-variables/) 或 [Heroku](https://devcenter.heroku.com/articles/config-vars)的文档。
 
 ## Can I Use Decorators?
+
+### 我可以使用装饰器吗？
 
 Many popular libraries use [decorators](https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841) in their documentation.<br>
 Create React App doesn’t support decorator syntax at the moment because:
 
+许多受欢迎的库在其文档中使用[装饰器](https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841)。
+
+Create React App目前不支持装饰器语法，因为：
+
 * It is an experimental proposal and is subject to change.
+* 这是一个实验性提案，可能会改变。
 * The current specification version is not officially supported by Babel.
+* 目前的规范版本没有被Babel正式支持。
 * If the specification changes, we won’t be able to write a codemod because we don’t use them internally at Facebook.
+* 如果规范发生变化，我们将无法编写一个codemod，因为我们不在Facebook内部使用它们。
 
 However in many cases you can rewrite decorator-based code without decorators just as fine.<br>
 Please refer to these two threads for reference:
+
+但是，在许多情况下，您可以重新编写基于装饰器的代码，而不需要装饰器就可以了.<br>
+
+请参考这两个线程以供参考：
 
 * [#214](https://github.com/facebookincubator/create-react-app/issues/214)
 * [#411](https://github.com/facebookincubator/create-react-app/issues/411)
 
 Create React App will add decorator support when the specification advances to a stable stage.
+
+当规范进展到稳定的阶段时，Create React App将添加装饰器支持。
 
 ## Integrating with an API Backend
 
