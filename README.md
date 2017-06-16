@@ -21,7 +21,7 @@ You can find the most recent version of this guide [here](https://github.com/fac
   - [npm test](#npm-test)
   - [npm run build](#npm-run-build)
   - [npm run eject](#npm-run-eject)
-- [Supported Language Features and Polyfills](#supported-language-features-and-polyfills) 支持的语言功能和Polyfills (Polyfills是Remy Sharp提出的一个术语，用来补充因缺乏对新API支持而缺失的功能。)
+- [Supported Language Features and Polyfills](#supported-language-features-and-polyfills) 支持的语言功能和Polyfills (Polyfills是Remy Sharp提出的一个术语，用来补充因缺乏对新API支持而缺失的功能)
 - [Syntax Highlighting in the Editor](#syntax-highlighting-in-the-editor) 编辑器中的语法突出显示
 - [Displaying Lint Output in the Editor](#displaying-lint-output-in-the-editor) 在编辑器中显示Lint输出
 - [Debugging in the Editor](#debugging-in-the-editor) 在编辑器中调试
@@ -133,7 +133,7 @@ We commit to keeping the breaking changes minimal so you can upgrade `react-scri
 
 We are always open to [your feedback](https://github.com/facebookincubator/create-react-app/issues).
 
-我们总是对您的反馈开放。
+我们总是对[您的反馈](https://github.com/facebookincubator/create-react-app/issues)开放。
 
 ## Folder Structure
 ### 文件夹结构
@@ -166,7 +166,7 @@ For the project to build, **these files must exist with exact filenames**:
 * `public/index.html` is the page template;
 * `public/index.html` 是页面模板;
 * `src/index.js` is the JavaScript entry point.
-* `src/index.js` 是JavaScript入口点.
+* `src/index.js` 是`JavaScript`入口点.
 
 You can delete or rename the other files.
 
@@ -176,7 +176,7 @@ You may create subdirectories inside `src`. For faster rebuilds, only files insi
 You need to **put any JS and CSS files inside `src`**, or Webpack won’t see them.
 
 您可以在`src`内创建子目录。对于更快的重建，只有`src`中的文件才能被Webpack处理.<br>
-您需要**将任何JS和CSS文件放在src中**，否则Webpack将不会看到它们。
+您需要**将任何JS和CSS文件放在src中**，否则Webpack将不会发现它们。
 
 Only files inside `public` can be used from `public/index.html`.<br>
 Read instructions below for using assets from JavaScript and HTML.
@@ -224,38 +224,70 @@ See the section about [running tests](#running-tests) for more information.
 Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
+构建生产应用程序到 `build` 文件夹.<br>
+
+它在生产模式下正确地捆绑了React，并优化了构建以获得最佳性能。
+
 The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
 
+构建已经被细化，文件名包括散列.<br>
+
+您的应用程序已准备好部署了！
+
 See the section about [deployment](#deployment) for more information.
+
+有关详细信息，请参阅有关部署的部分。
 
 ### `npm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
+**注意：这是一个单向操作。一旦你`弹出`，你不能返回！**
+
 If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+如果您对构建工具和配置选项不满意，您可以随时`弹出`。此命令将从项目中删除单个构建依赖关系。
 
 Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
+相反，它会将所有配置文件和传递依赖项（Webpack，Babel，ESLint等）直接复制到您的项目中，以便您可以完全控制它们。除`弹出`之外的所有命令仍将起作用，但它们将指向复制的脚本，以便您可以调整它们。在这一点上，你是你自己的。
+
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
+你不必使用`弹出`。策划的功能集适用于中小型部署，您不应该有义务使用此功能。但是，我们明白，如果您无法自定义此工具，则此工具将无用。
+
 ## Supported Language Features and Polyfills
+
+### 支持的语言功能和Polyfills
+
+**Polyfills是Remy Sharp提出的一个术语，用来补充因缺乏对新API支持而缺失的功能**
 
 This project supports a superset of the latest JavaScript standard.<br>
 In addition to [ES6](https://github.com/lukehoban/es6features) syntax features, it also supports:
 
-* [Exponentiation Operator](https://github.com/rwaldron/exponentiation-operator) (ES2016).
-* [Async/await](https://github.com/tc39/ecmascript-asyncawait) (ES2017).
-* [Object Rest/Spread Properties](https://github.com/sebmarkbage/ecmascript-rest-spread) (stage 3 proposal).
-* [Dynamic import()](https://github.com/tc39/proposal-dynamic-import) (stage 3 proposal)
-* [Class Fields and Static Properties](https://github.com/tc39/proposal-class-public-fields) (stage 2 proposal).
-* [JSX](https://facebook.github.io/react/docs/introducing-jsx.html) and [Flow](https://flowtype.org/) syntax.
+该项目支持最新JavaScript标准的超集.<br>
+
+除了ES6语法功能之外，它还支持：
+
+* [Exponentiation Operator](https://github.com/rwaldron/exponentiation-operator) (ES2016).【指数运算符】
+* [Async/await](https://github.com/tc39/ecmascript-asyncawait) (ES2017).【异步&等待关键词】
+* [Object Rest/Spread Properties](https://github.com/sebmarkbage/ecmascript-rest-spread) (stage 3 proposal).【对象休眠/扩展属性（第3阶段提案）】
+* [Dynamic import()](https://github.com/tc39/proposal-dynamic-import) (stage 3 proposal)【动态导入（第3阶段提案）】
+* [Class Fields and Static Properties](https://github.com/tc39/proposal-class-public-fields) (stage 2 proposal).【类字段和静态属性（第3阶段提案）】
+* [JSX](https://facebook.github.io/react/docs/introducing-jsx.html) and [Flow](https://flowtype.org/) syntax.【JSX和Flow语法】
 
 Learn more about [different proposal stages](https://babeljs.io/docs/plugins/#presets-stage-x-experimental-presets-).
 
+了解有关不同阶段的更多信息。
+
 While we recommend to use experimental proposals with some caution, Facebook heavily uses these features in the product code, so we intend to provide [codemods](https://medium.com/@cpojer/effective-javascript-codemods-5a6686bb46fb) if any of these proposals change in the future.
 
+虽然我们建议您谨慎使用实验性建议书，但Facebook在产品代码中大量使用这些功能，因此，如果将来有任何这些提案发生变化，我们打算提供代码。
+
 Note that **the project only includes a few ES6 [polyfills](https://en.wikipedia.org/wiki/Polyfill)**:
+
+请注意，该项目仅包括几个ES6 polyfills：
 
 * [`Object.assign()`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) via [`object-assign`](https://github.com/sindresorhus/object-assign).
 * [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) via [`promise`](https://github.com/then/promise).
@@ -263,20 +295,38 @@ Note that **the project only includes a few ES6 [polyfills](https://en.wikipedia
 
 If you use any other ES6+ features that need **runtime support** (such as `Array.from()` or `Symbol`), make sure you are including the appropriate polyfills manually, or that the browsers you are targeting already support them.
 
+如果您使用任何需要**运行时支持**的其他ES6功能(例如 `Array.from()` or `Symbol`)，请确保您手动包含相应的polyfills，或者您定位的浏览器已经支持它们。
+
 ## Syntax Highlighting in the Editor
+
+### 编辑器中的语法突出显示
 
 To configure the syntax highlighting in your favorite text editor, head to the [relevant Babel documentation page](https://babeljs.io/docs/editors) and follow the instructions. Some of the most popular editors are covered.
 
+要在您喜欢的文本编辑器中配置语法高亮，请转到[相关的Babel文档](https://babeljs.io/docs/editors)页面，然后按照说明进行操作。一些最流行的编辑被覆盖。
+
 ## Displaying Lint Output in the Editor
+
+### 在编辑器中显示Lint输出
 
 >Note: this feature is available with `react-scripts@0.2.0` and higher.<br>
 >It also only works with npm 3 or higher.
+>
+>注意：此功能可用在react-scripts@0.2.0及更高版本.<br>
+>
+>它也只适用于npm 3或更高版本。
 
 Some editors, including Sublime Text, Atom, and Visual Studio Code, provide plugins for ESLint.
 
+一些编辑器，包括Sublime Text，Atom和Visual Studio Code，可以为其提供ESLint插件。
+
 They are not required for linting. You should see the linter output right in your terminal as well as the browser console. However, if you prefer the lint results to appear right in your editor, there are some extra steps you can do.
 
+它们不需要进行Linting。您应该在终端以及浏览器控制台中看到信息输出。但是，如果您喜欢在编辑器中显示lint结果，则可以执行一些额外的步骤。
+
 You would need to install an ESLint plugin for your editor first. Then, add a file called `.eslintrc` to the project root:
+
+您需要先为编辑器安装ESLint插件。然后，将一个名为`.eslintrc`的文件添加到项目根目录中：
 
 ```js
 {
@@ -286,19 +336,35 @@ You would need to install an ESLint plugin for your editor first. Then, add a fi
 
 Now your editor should report the linting warnings.
 
+现在你的编辑器应该报告出那些检索出的警告。
+
 Note that even if you edit your `.eslintrc` file further, these changes will **only affect the editor integration**. They won’t affect the terminal and in-browser lint output. This is because Create React App intentionally provides a minimal set of rules that find common mistakes.
+
+请注意，即使您进一步编辑`.eslintrc`文件，这些更改**只会影响编辑器的集成**。它们不会影响终端和浏览器中的lint输出。这是因为**Create React App **有意提供了一组最常见的错误的规则。
 
 If you want to enforce a coding style for your project, consider using [Prettier](https://github.com/jlongster/prettier) instead of ESLint style rules.
 
+如果要为项目强制执行编码风格，请考虑使用[Prettier](https://github.com/jlongster/prettier)而不是**ESLint**样式规则。
+
 ## Debugging in the Editor
+
+### 在编辑器中调试
 
 **This feature is currently only supported by [Visual Studio Code](https://code.visualstudio.com) editor.**
 
+此功能目前仅支持 [Visual Studio Code](https://code.visualstudio.com) 编辑器。
+
 Visual Studio Code supports debugging out of the box with Create React App. This enables you as a developer to write and debug your React code without leaving the editor, and most importantly it enables you to have a continuous development workflow, where context switching is minimal, as you don’t have to switch between tools.
+
+Visual StudioCode支持使用Create React App进行开箱调试。这使您可以作为开发人员编写和调试您的React代码，而不必离开编辑器，最重要的是它可以让您拥有持续的开发工作流程，其中编辑器环境切换是最小的，因为您不必在工具之间进行切换。
 
 You would need to have the latest version of [VS Code](https://code.visualstudio.com) and VS Code [Chrome Debugger Extension](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) installed.
 
+您需要安装[VS Code](https://code.visualstudio.com)和VS Code [Chrome调试器扩展](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)的最新版本。
+
 Then add the block below to your `launch.json` file and put it inside the `.vscode` folder in your app’s root directory.
+
+然后将下面的代码块添加到您的`launch.json`文件中，并将其放在应用程序根目录中的`.vscode`文件夹中。
 
 ```json
 {
@@ -319,19 +385,35 @@ Then add the block below to your `launch.json` file and put it inside the `.vsco
 
 Start your app by running `npm start`, and start debugging in VS Code by pressing `F5` or by clicking the green debug icon. You can now write code, set breakpoints, make changes to the code, and debug your newly modified code—all from your editor.
 
+通过运行 `npm start` 启动您的应用程序，并通过按`F5`或单击绿色调试图标在VS代码中开始调试。您现在可以编辑代码，设置断点，更改代码，并从编辑器调试新修改的代码。
+
 ## Changing the Page `<title>`
+
+### 更改页面`<title>`
 
 You can find the source HTML file in the `public` folder of the generated project. You may edit the `<title>` tag in it to change the title from “React App” to anything else.
 
+您可以在生成的项目的 `public` 文件夹中找到源HTML文件。您可以编辑其中的`<title>`标签，将标题从“React App”更改为其他任何内容。
+
 Note that normally you wouldn’t edit files in the `public` folder very often. For example, [adding a stylesheet](#adding-a-stylesheet) is done without touching the HTML.
+
+请注意，通常您不会经常在 `public` 文件夹中编辑文件。例如，通过添加样式表完成，而不修改HTML文件。
 
 If you need to dynamically update the page title based on the content, you can use the browser [`document.title`](https://developer.mozilla.org/en-US/docs/Web/API/Document/title) API. For more complex scenarios when you want to change the title from React components, you can use [React Helmet](https://github.com/nfl/react-helmet), a third party library.
 
+如果您需要根据内容动态更新页面标题，可以使用浏览器的[document.title API](https://developer.mozilla.org/en-US/docs/Web/API/Document/title)。对于要从React组件更改标题的更复杂的场景，可以使用[React Helmet](https://github.com/nfl/react-helmet)(一个第三方库)。
+
 If you use a custom server for your app in production and want to modify the title before it gets sent to the browser, you can follow advice in [this section](#generating-dynamic-meta-tags-on-the-server). Alternatively, you can pre-build each page as a static HTML file which then loads the JavaScript bundle, which is covered [here](#pre-rendering-into-static-html-files).
+
+如果您在生产中为自己的应用程序使用自定义服务器，并且要在将标题发送到浏览器之前修改标题，则可以在本节中遵循建议。或者，您可以将每个页面预先构建为一个静态HTML文件，然后加载JavaScript包，此处将在此介绍。
 
 ## Installing a Dependency
 
+### 安装依赖关系
+
 The generated project includes React and ReactDOM as dependencies. It also includes a set of scripts used by Create React App as a development dependency. You may install other dependencies (for example, React Router) with `npm`:
+
+生成的项目包含`React`和`ReactDOM`作为依赖关系。它还包括`Create React App`用作开发依赖关系的一组脚本。您可以使用`npm`安装其他依赖项（例如`React Router`）
 
 ```
 npm install --save <library-name>
@@ -339,10 +421,19 @@ npm install --save <library-name>
 
 ## Importing a Component
 
+### 导入组件
+
 This project setup supports ES6 modules thanks to Babel.<br>
+
+感谢Babel开源模块，因为这个项目设置支持ES6模块.<br>
+
 While you can still use `require()` and `module.exports`, we encourage you to use [`import` and `export`](http://exploringjs.com/es6/ch_modules.html) instead.
 
+虽然您仍然可以使用 `require()` 和 `module.exports`, 但我们建议您改用导入和导出。
+
 For example:
+
+例如:
 
 ### `Button.js`
 
@@ -355,7 +446,9 @@ class Button extends Component {
   }
 }
 
-export default Button; // Don’t forget to use export default!
+// Don’t forget to use export default!
+// 不要忘记使用export default!
+export default Button; 
 ```
 
 ### `DangerButton.js`
@@ -363,7 +456,10 @@ export default Button; // Don’t forget to use export default!
 
 ```js
 import React, { Component } from 'react';
-import Button from './Button'; // Import a component from another file
+
+// Import a component from another file
+// 从另一个文件导入组件
+import Button from './Button'; 
 
 class DangerButton extends Component {
   render() {
@@ -376,23 +472,37 @@ export default DangerButton;
 
 Be aware of the [difference between default and named exports](http://stackoverflow.com/questions/36795819/react-native-es-6-when-should-i-use-curly-braces-for-import/36796281#36796281). It is a common source of mistakes.
 
+请注意默认和命名导出之间的区别。这是错误的常见来源。
+
 We suggest that you stick to using default imports and exports when a module only exports a single thing (for example, a component). That’s what you get when you use `export default Button` and `import Button from './Button'`.
+
+我们建议您在模块仅导出单个对象(例如，组件)时坚持使用默认导入和导出。这就是你使用时所得到的 `export default Button` 和 `import Button from './Button'`.
 
 Named exports are useful for utility modules that export several functions. A module may have at most one default export and as many named exports as you like.
 
-Learn more about ES6 modules:
+命名导出对导出多个功能的实用程序模块很有用。一个模块最多可能有一个默认的导出，并且有许多命名的导出。
 
-* [When to use the curly braces?](http://stackoverflow.com/questions/36795819/react-native-es-6-when-should-i-use-curly-braces-for-import/36796281#36796281)
-* [Exploring ES6: Modules](http://exploringjs.com/es6/ch_modules.html)
-* [Understanding ES6: Modules](https://leanpub.com/understandinges6/read#leanpub-auto-encapsulating-code-with-modules)
+Learn more about ES6 modules: 了解有关ES6模块的更多信息
+
+* [When to use the curly braces?](http://stackoverflow.com/questions/36795819/react-native-es-6-when-should-i-use-curly-braces-for-import/36796281#36796281) 何时使用花括号？
+* [Exploring ES6: Modules](http://exploringjs.com/es6/ch_modules.html) 探索ES6：模块
+* [Understanding ES6: Modules](https://leanpub.com/understandinges6/read#leanpub-auto-encapsulating-code-with-modules) 了解ES6：模块
 
 ## Code Splitting
 
+### 代码拆分
+
 Instead of downloading the entire app before users can use it, code splitting allows you to split your code into small chunks which you can then load on demand.
+
+用户可以使用代码分割，而不是下载整个应用程序，您可以将代码拆分成小块，然后可以按需加载。
 
 This project setup supports code splitting via [dynamic `import()`](http://2ality.com/2017/01/import-operator.html#loading-code-on-demand). Its [proposal](https://github.com/tc39/proposal-dynamic-import) is in stage 3. The `import()` function-like form takes the module name as an argument and returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) which always resolves to the namespace object of the module.
 
+此项目设置支持通过 [dynamic `import()`](http://2ality.com/2017/01/import-operator.html#loading-code-on-demand)进行代码分割。它的[提议](https://github.com/tc39/proposal-dynamic-import)处于阶段3。 `import()` 函数式表单将模块名称作为参数，并返回一个 [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) ，它始终解析为模块的命名空间对象。
+
 Here is an example:
+
+这是一个例子：
 
 ### `moduleA.js`
 
@@ -431,11 +541,19 @@ export default App;
 
 This will make `moduleA.js` and all its unique dependencies as a separate chunk that only loads after the user clicks the 'Load' button.
 
+这将使`moduleA.js`及其所有唯一的依赖关系作为单独的块，仅在用户单击“加载”按钮后加载。
+
 You can also use it with `async` / `await` syntax if you prefer it.
+
+如果您愿意，也可以使用 `async` / `await` 语法。
 
 ## Adding a Stylesheet
 
+### 添加样式表
+
 This project setup uses [Webpack](https://webpack.js.org/) for handling all assets. Webpack offers a custom way of “extending” the concept of `import` beyond JavaScript. To express that a JavaScript file depends on a CSS file, you need to **import the CSS from the JavaScript file**:
+
+此项目设置使用 [Webpack](https://webpack.js.org/) 处理所有资源。 Webpack提供了一种“定制”的方式，将 `import` 概念扩展到JavaScript之外。要表示一个JavaScript文件依赖于一个CSS文件，**您需要从JavaScript文件导入CSS**：
 
 ### `Button.css`
 
@@ -449,11 +567,14 @@ This project setup uses [Webpack](https://webpack.js.org/) for handling all asse
 
 ```js
 import React, { Component } from 'react';
-import './Button.css'; // Tell Webpack that Button.js uses these styles
+// Tell Webpack that Button.js uses these styles
+// 告诉Webpack，Button.js使用这些样式
+import './Button.css'; 
 
 class Button extends Component {
   render() {
     // You can use them as regular CSS styles
+    // 您可以将它们用作常规CSS样式
     return <div className="Button" />;
   }
 }
@@ -461,15 +582,27 @@ class Button extends Component {
 
 **This is not required for React** but many people find this feature convenient. You can read about the benefits of this approach [here](https://medium.com/seek-ui-engineering/block-element-modifying-your-javascript-components-d7f99fcab52b). However you should be aware that this makes your code less portable to other build tools and environments than Webpack.
 
+**对于React这不是必需的**，但很多人发现这个功能很方便。您可以在[这里](https://medium.com/seek-ui-engineering/block-element-modifying-your-javascript-components-d7f99fcab52b)阅读这种方法的好处。但是，您应该意识到，相比Webpack，这使得您的代码不便于其他构建工具和环境。
+
 In development, expressing dependencies this way allows your styles to be reloaded on the fly as you edit them. In production, all CSS files will be concatenated into a single minified `.css` file in the build output.
+
+在开发中，通过这种方式表达依赖关系，可以在编辑它们时快速重新加载样式。在生产中，所有的CSS文件将被连接到构建输出中的一个最小化的`.css`文件中。
 
 If you are concerned about using Webpack-specific semantics, you can put all your CSS right into `src/index.css`. It would still be imported from `src/index.js`, but you could always remove that import if you later migrate to a different build tool.
 
+如果您关心使用特定于Webpack的语义，可以将所有CSS正确放入`src/index.css`。它仍将从`src/index.js`导入，但如果以后迁移到其他构建工具，则可以随时删除该导入。
+
 ## Post-Processing CSS
+
+### CSS后期处理
 
 This project setup minifies your CSS and adds vendor prefixes to it automatically through [Autoprefixer](https://github.com/postcss/autoprefixer) so you don’t need to worry about it.
 
+这个项目设置可以减少你的CSS，并通过 [Autoprefixer](https://github.com/postcss/autoprefixer) 自动添加浏览器供应商的前缀，所以你不需要担心。
+
 For example, this:
+
+例如：
 
 ```css
 .App {
@@ -480,6 +613,8 @@ For example, this:
 ```
 
 becomes this:
+
+成为这样
 
 ```css
 .App {
@@ -498,18 +633,30 @@ becomes this:
 
 If you need to disable autoprefixing for some reason, [follow this section](https://github.com/postcss/autoprefixer#disabling).
 
+如果由于某些原因需要禁用autoprefixing，请[参照这一节](https://github.com/postcss/autoprefixer#disabling)。
+
 ## Adding a CSS Preprocessor (Sass, Less etc.)
+
+### 添加CSS预处理器(Sass,Less等)
 
 Generally, we recommend that you don’t reuse the same CSS classes across different components. For example, instead of using a `.Button` CSS class in `<AcceptButton>` and `<RejectButton>` components, we recommend creating a `<Button>` component with its own `.Button` styles, that both `<AcceptButton>` and `<RejectButton>` can render (but [not inherit](https://facebook.github.io/react/docs/composition-vs-inheritance.html)).
 
+通常，我们建议您不要在不同的组件之间重复使用相同的CSS类。例如，不要在`<AcceptButton>`和`<RejectButton>`组件中使用`.Button` CSS类，我们建议使用自己的`.Button`样式创建一个`<Button>`组件，`<AcceptButton>`和`<RejectButton>`可以呈现（但不能继承）。
+
 Following this rule often makes CSS preprocessors less useful, as features like mixins and nesting are replaced by component composition. You can, however, integrate a CSS preprocessor if you find it valuable. In this walkthrough, we will be using Sass, but you can also use Less, or another alternative.
 
+遵循这条规则往往使CSS预处理器不太有用，因为诸如混合和嵌套之类的功能被组件的组合所替代。但是，如果您发现它有价值，您可以集成CSS预处理器。在本演练中，我们将使用Sass，但您也可以使用Less或另一种选择。
+
 First, let’s install the command-line interface for Sass:
+
+首先，我们通过命令行界面来安装Sass：
 
 ```
 npm install node-sass-chokidar --save-dev
 ```
 Then in `package.json`, add the following lines to `scripts`:
+
+然后在`package.json`中，将以下行添加到脚本中：
 
 ```diff
    "scripts": {
@@ -521,12 +668,20 @@ Then in `package.json`, add the following lines to `scripts`:
 ```
 
 >Note: To use a different preprocessor, replace `build-css` and `watch-css` commands according to your preprocessor’s documentation.
+>
+>注意：要使用不同的预处理器，请根据预处理器的文档替换`build-css`和`watch-css`命令。
 
 Now you can rename `src/App.css` to `src/App.scss` and run `npm run watch-css`. The watcher will find every Sass file in `src` subdirectories, and create a corresponding CSS file next to it, in our case overwriting `src/App.css`. Since `src/App.js` still imports `src/App.css`, the styles become a part of your application. You can now edit `src/App.scss`, and `src/App.css` will be regenerated.
 
+现在，您可以将 `src/App.css` 重命名为 `src/App.scss` 并运行 `npm run watch-css`。观察器将在`src`子目录中找到每个Sass文件，并在其旁边创建一个相应的CSS文件，在我们的例子中覆盖`src/App.css`。由于`src/App.js` 仍然导入 `src/App.css`，样式将成为您的应用程序的一部分。您现在可以编辑 `src/App.scss`,，并重新生成`src/App.css` 。
+
 To share variables between Sass files, you can use Sass imports. For example, `src/App.scss` and other component style files could include `@import "./shared.scss";` with variable definitions.
 
+要在Sass文件之间共享变量，可以使用Sass导入。例如， `src/App.scss` 和其他组件样式文件可以包括使用变量定义的`@import "./shared.scss"`。
+
 To enable importing files without using relative paths, you can add the  `--include-path` option to the command in `package.json`.
+
+要在不使用相对路径的情况下导入文件，可以在`package.json`中的命令块中添加`--include-path`选项。
 
 ```
 "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
@@ -535,9 +690,16 @@ To enable importing files without using relative paths, you can add the  `--incl
 
 This will allow you to do imports like
 
+这样将会允许你可以像这样导入
+
 ```scss
-@import 'styles/_colors.scss'; // assuming a styles directory under src/
-@import 'nprogress/nprogress'; // importing a css file from the nprogress node module
+// assuming a styles directory under src/
+// 假设在src/下的一个样式目录中
+@import 'styles/_colors.scss'; 
+
+// importing a css file from the nprogress node module
+// 从nprogress节点模块导入一个css文件
+@import 'nprogress/nprogress'; 
 ```
 
 At this point you might want to remove all CSS files from the source control, and add `src/**/*.css` to your `.gitignore` file. It is generally a good practice to keep the build products outside of the source control.
@@ -883,7 +1045,7 @@ These variables will act as the defaults if the machine does not explicitly set 
 Please refer to the [dotenv documentation](https://github.com/motdotla/dotenv) for more details.
 
 >Note: If you are defining environment variables for development, your CI and/or hosting platform will most likely need
-these defined as well. Consult their documentation how to do this. For example, see the documentation for [Travis CI](https://docs.travis-ci.com/user/environment-variables/) or [Heroku](https://devcenter.heroku.com/articles/config-vars).
+>these defined as well. Consult their documentation how to do this. For example, see the documentation for [Travis CI](https://docs.travis-ci.com/user/environment-variables/) or [Heroku](https://devcenter.heroku.com/articles/config-vars).
 
 ## Can I Use Decorators?
 
@@ -1296,7 +1458,7 @@ Popular CI servers already set the environment variable `CI` by default but you 
 #### Travis CI
 
 1. Following the [Travis Getting started](https://docs.travis-ci.com/user/getting-started/) guide for syncing your GitHub repository with Travis.  You may need to initialize some settings manually in your [profile](https://travis-ci.org/profile) page.
-1. Add a `.travis.yml` file to your git repository.
+2. Add a `.travis.yml` file to your git repository.
 ```
 language: node_js
 node_js:
@@ -1310,7 +1472,7 @@ script:
   - npm run build
 ```
 1. Trigger your first build with a git push.
-1. [Customize your Travis CI Build](https://docs.travis-ci.com/user/customizing-the-build/) if needed.
+2. [Customize your Travis CI Build](https://docs.travis-ci.com/user/customizing-the-build/) if needed.
 
 ### On your own environment
 ##### Windows (cmd.exe)
@@ -1418,7 +1580,7 @@ Learn more about React Storybook:
 * [GitHub Repo](https://github.com/kadirahq/react-storybook)
 * [Documentation](https://storybooks.js.org/docs/react-storybook/basics/introduction/)
 * [Snapshot Testing](https://github.com/kadirahq/storyshots) with React Storybook
--->
+  -->
 
 ## Making a Progressive Web App
 
@@ -1453,59 +1615,59 @@ the service worker will be uninstalled.
 ### Offline-First Considerations
 
 1. Service workers [require HTTPS](https://developers.google.com/web/fundamentals/getting-started/primers/service-workers#you_need_https),
-although to facilitate local testing, that policy
-[does not apply to `localhost`](http://stackoverflow.com/questions/34160509/options-for-testing-service-workers-via-http/34161385#34161385).
-If your production web server does not support HTTPS, then the service worker
-registration will fail, but the rest of your web app will remain functional.
+  although to facilitate local testing, that policy
+  [does not apply to `localhost`](http://stackoverflow.com/questions/34160509/options-for-testing-service-workers-via-http/34161385#34161385).
+  If your production web server does not support HTTPS, then the service worker
+  registration will fail, but the rest of your web app will remain functional.
 
-1. Service workers are [not currently supported](https://jakearchibald.github.io/isserviceworkerready/)
-in all web browsers. Service worker registration [won't be attempted](src/registerServiceWorker.js)
-on browsers that lack support.
+2. Service workers are [not currently supported](https://jakearchibald.github.io/isserviceworkerready/)
+  in all web browsers. Service worker registration [won't be attempted](src/registerServiceWorker.js)
+  on browsers that lack support.
 
-1. The service worker is only enabled in the [production environment](#deployment),
-e.g. the output of `npm run build`. It's recommended that you do not enable an
-offline-first service worker in a development environment, as it can lead to
-frustration when previously cached assets are used and do not include the latest
-changes you've made locally.
+3. The service worker is only enabled in the [production environment](#deployment),
+  e.g. the output of `npm run build`. It's recommended that you do not enable an
+  offline-first service worker in a development environment, as it can lead to
+  frustration when previously cached assets are used and do not include the latest
+  changes you've made locally.
 
-1. If you *need* to test your offline-first service worker locally, build
-the application (using `npm run build`) and run a simple http server from your
-build directory. After running the build script, `create-react-app` will give
-instructions for one way to test your production build locally and the [deployment instructions](#deployment) have
-instructions for using other methods. *Be sure to always use an
-incognito window to avoid complications with your browser cache.*
+4. If you *need* to test your offline-first service worker locally, build
+  the application (using `npm run build`) and run a simple http server from your
+  build directory. After running the build script, `create-react-app` will give
+  instructions for one way to test your production build locally and the [deployment instructions](#deployment) have
+  instructions for using other methods. *Be sure to always use an
+  incognito window to avoid complications with your browser cache.*
 
-1. If possible, configure your production environment to serve the generated
-`service-worker.js` [with HTTP caching disabled](http://stackoverflow.com/questions/38843970/service-worker-javascript-update-frequency-every-24-hours).
-If that's not possible—[GitHub Pages](#github-pages), for instance, does not
-allow you to change the default 10 minute HTTP cache lifetime—then be aware
-that if you visit your production site, and then revisit again before
-`service-worker.js` has expired from your HTTP cache, you'll continue to get
-the previously cached assets from the service worker. If you have an immediate
-need to view your updated production deployment, performing a shift-refresh
-will temporarily disable the service worker and retrieve all assets from the
-network.
+5. If possible, configure your production environment to serve the generated
+  `service-worker.js` [with HTTP caching disabled](http://stackoverflow.com/questions/38843970/service-worker-javascript-update-frequency-every-24-hours).
+  If that's not possible—[GitHub Pages](#github-pages), for instance, does not
+  allow you to change the default 10 minute HTTP cache lifetime—then be aware
+  that if you visit your production site, and then revisit again before
+  `service-worker.js` has expired from your HTTP cache, you'll continue to get
+  the previously cached assets from the service worker. If you have an immediate
+  need to view your updated production deployment, performing a shift-refresh
+  will temporarily disable the service worker and retrieve all assets from the
+  network.
 
-1. Users aren't always familiar with offline-first web apps. It can be useful to
-[let the user know](https://developers.google.com/web/fundamentals/instant-and-offline/offline-ux#inform_the_user_when_the_app_is_ready_for_offline_consumption)
-when the service worker has finished populating your caches (showing a "This web
-app works offline!" message) and also let them know when the service worker has
-fetched the latest updates that will be available the next time they load the
-page (showing a "New content is available; please refresh." message). Showing
-this messages is currently left as an exercise to the developer, but as a
-starting point, you can make use of the logic included in [`src/registerServiceWorker.js`](src/registerServiceWorker.js), which
-demonstrates which service worker lifecycle events to listen for to detect each
-scenario, and which as a default, just logs appropriate messages to the
-JavaScript console.
+6. Users aren't always familiar with offline-first web apps. It can be useful to
+  [let the user know](https://developers.google.com/web/fundamentals/instant-and-offline/offline-ux#inform_the_user_when_the_app_is_ready_for_offline_consumption)
+  when the service worker has finished populating your caches (showing a "This web
+  app works offline!" message) and also let them know when the service worker has
+  fetched the latest updates that will be available the next time they load the
+  page (showing a "New content is available; please refresh." message). Showing
+  this messages is currently left as an exercise to the developer, but as a
+  starting point, you can make use of the logic included in [`src/registerServiceWorker.js`](src/registerServiceWorker.js), which
+  demonstrates which service worker lifecycle events to listen for to detect each
+  scenario, and which as a default, just logs appropriate messages to the
+  JavaScript console.
 
-1. By default, the generated service worker file will not intercept or cache any
-cross-origin traffic, like HTTP [API requests](#integrating-with-an-api-backend),
-images, or embeds loaded from a different domain. If you would like to use a
-runtime caching strategy for those requests, you can [`eject`](#npm-run-eject)
-and then configure the
-[`runtimeCaching`](https://github.com/GoogleChrome/sw-precache#runtimecaching-arrayobject)
-option in the `SWPrecacheWebpackPlugin` section of
-[`webpack.config.prod.js`](../config/webpack.config.prod.js).
+7. By default, the generated service worker file will not intercept or cache any
+  cross-origin traffic, like HTTP [API requests](#integrating-with-an-api-backend),
+  images, or embeds loaded from a different domain. If you would like to use a
+  runtime caching strategy for those requests, you can [`eject`](#npm-run-eject)
+  and then configure the
+  [`runtimeCaching`](https://github.com/GoogleChrome/sw-precache#runtimecaching-arrayobject)
+  option in the `SWPrecacheWebpackPlugin` section of
+  [`webpack.config.prod.js`](../config/webpack.config.prod.js).
 
 ### Progressive Web App Metadata
 
@@ -1868,14 +2030,14 @@ Note that in order to support routers that use HTML5 `pushState` API, you may wa
 
 You can adjust various development and production settings by setting environment variables in your shell or with [.env](#adding-development-environment-variables-in-env).
 
-Variable | Development | Production | Usage
-:--- | :---: | :---: | :---
-BROWSER | :white_check_mark: | :x: | By default, Create React App will open the default system browser, favoring Chrome on macOS. Specify a [browser](https://github.com/sindresorhus/opn#app) to override this behavior, or set it to `none` to disable it completely. If you need to customize the way the browser is launched, you can specify a node script instead. Any arguments passed to `npm start` will also be passed to this script, and the url where your app is served will be the last argument. Your script's file name must have the `.js` extension.
-HOST | :white_check_mark: | :x: | By default, the development web server binds to `localhost`. You may use this variable to specify a different host.
-PORT | :white_check_mark: | :x: | By default, the development web server will attempt to listen on port 3000 or prompt you to attempt the next available port. You may use this variable to specify a different port.
-HTTPS | :white_check_mark: | :x: | When set to `true`, Create React App will run the development server in `https` mode.
-PUBLIC_URL | :x: | :white_check_mark: | Create React App assumes your application is hosted at the serving web server's root or a subpath as specified in [`package.json` (`homepage`)](#building-for-relative-paths). Normally, Create React App ignores the hostname. You may use this variable to force assets to be referenced verbatim to the url you provide (hostname included). This may be particularly useful when using a CDN to host your application.
-CI | :large_orange_diamond: | :white_check_mark: | When set to `true`, Create React App treats warnings as failures in the build. It also makes the test runner non-watching. Most CIs set this flag by default.
+| Variable   |      Development       |     Production     | Usage                                    |
+| :--------- | :--------------------: | :----------------: | :--------------------------------------- |
+| BROWSER    |   :white_check_mark:   |        :x:         | By default, Create React App will open the default system browser, favoring Chrome on macOS. Specify a [browser](https://github.com/sindresorhus/opn#app) to override this behavior, or set it to `none` to disable it completely. If you need to customize the way the browser is launched, you can specify a node script instead. Any arguments passed to `npm start` will also be passed to this script, and the url where your app is served will be the last argument. Your script's file name must have the `.js` extension. |
+| HOST       |   :white_check_mark:   |        :x:         | By default, the development web server binds to `localhost`. You may use this variable to specify a different host. |
+| PORT       |   :white_check_mark:   |        :x:         | By default, the development web server will attempt to listen on port 3000 or prompt you to attempt the next available port. You may use this variable to specify a different port. |
+| HTTPS      |   :white_check_mark:   |        :x:         | When set to `true`, Create React App will run the development server in `https` mode. |
+| PUBLIC_URL |          :x:           | :white_check_mark: | Create React App assumes your application is hosted at the serving web server's root or a subpath as specified in [`package.json` (`homepage`)](#building-for-relative-paths). Normally, Create React App ignores the hostname. You may use this variable to force assets to be referenced verbatim to the url you provide (hostname included). This may be particularly useful when using a CDN to host your application. |
+| CI         | :large_orange_diamond: | :white_check_mark: | When set to `true`, Create React App treats warnings as failures in the build. It also makes the test runner non-watching. Most CIs set this flag by default. |
 
 ## Troubleshooting
 
