@@ -38,7 +38,7 @@ You can find the most recent version of this guide [here](https://github.com/fac
   - [Adding Assets Outside of the Module System](#adding-assets-outside-of-the-module-system) 在模块系统之外添加资源
   - [When to Use the `public` Folder](#when-to-use-the-public-folder) 何时使用`public`文件夹
 - [Using Global Variables](#using-global-variables) 使用全局变量
-- [Adding Bootstrap](#adding-bootstrap) 添加引导
+- [Adding Bootstrap](#adding-bootstrap) 添加Bootstrap库
   - [Using a Custom Theme](#using-a-custom-theme) 使用自定义主题
 - [Adding Flow](#adding-flow) 添加流
 - [Adding Custom Environment Variables](#adding-custom-environment-variables) 添加自定义环境变量
@@ -704,13 +704,19 @@ This will allow you to do imports like
 
 At this point you might want to remove all CSS files from the source control, and add `src/**/*.css` to your `.gitignore` file. It is generally a good practice to keep the build products outside of the source control.
 
+此时，您可能需要从源代码控件中删除所有的CSS文件，并将 `src/**/*.css` 添加到`.gitignore` 文件中。将构建产品保留在源代码控制之外是一个很好的做法。
+
 As a final step, you may find it convenient to run `watch-css` automatically with `npm start`, and run `build-css` as a part of `npm run build`. You can use the `&&` operator to execute two scripts sequentially. However, there is no cross-platform way to run two scripts in parallel, so we will install a package for this:
+
+作为最后一步，您可能会发现使用 `npm start`自动运行 `watch-css` 是方便的，并运行`build-css`作为 `npm run build`的一部分。
 
 ```
 npm install --save-dev npm-run-all
 ```
 
 Then we can change `start` and `build` scripts to include the CSS preprocessor commands:
+
+然后我们可以更改 `start` 和 `build` 脚本用来包含CSS预处理器命令：
 
 ```diff
    "scripts": {
@@ -728,36 +734,57 @@ Then we can change `start` and `build` scripts to include the CSS preprocessor c
 
 Now running `npm start` and `npm run build` also builds Sass files.
 
+现在运行`npm start`和`npm run build`还构建了Sass文件。
+
 **Why `node-sass-chokidar`?**
+
+**为什么使用 `node-sass-chokidar`?**
 
 `node-sass` has been reported as having the following issues:
 
+`node-sass` 据说存在以下问题：
+
 - `node-sass --watch` has been reported to have *performance issues* in certain conditions when used in a virtual machine or with docker.
-
+- `node-sass --watch` 据说，在虚拟机或docker容器中使用时，在某些情况下会出现性能问题。
 - Infinite styles compiling [#1939](https://github.com/facebookincubator/create-react-app/issues/1939)
-
+- 无限风格编译
 - `node-sass` has been reported as having issues with detecting new files in a directory [#1891](https://github.com/sass/node-sass/issues/1891)
+- `node-sass` 已被报告为检测目录中的新文件有问题 [#1891](https://github.com/sass/node-sass/issues/1891)
 
  `node-sass-chokidar` is used here as it addresses these issues.
 
+ `node-sass-chokidar` 在这里用于解决这些问题。
+
 ## Adding Images, Fonts, and Files
+
+### 添加图像，字体和文件
 
 With Webpack, using static assets like images and fonts works similarly to CSS.
 
+使用Webpack，使用像图像和字体的静态资源与CSS类似。
+
 You can **`import` a file right in a JavaScript module**. This tells Webpack to include that file in the bundle. Unlike CSS imports, importing a file gives you a string value. This value is the final path you can reference in your code, e.g. as the `src` attribute of an image or the `href` of a link to a PDF.
 
+您可以**直接在JavaScript模块中导入文件**。这告诉Webpack将该文件包括在包中。不像CSS导入，导入一个文件会给你一个字符串值。此值是您可以在代码中引用的最终路径，例如作为图像的 `src` 属性或链接到`PDF`的`href`。
+
 To reduce the number of requests to the server, importing images that are less than 10,000 bytes returns a [data URI](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs) instead of a path. This applies to the following file extensions: bmp, gif, jpg, jpeg, and png. SVG files are excluded due to [#1153](https://github.com/facebookincubator/create-react-app/issues/1153).
+
+为了减少对服务器的请求数量，导入少于10000个字节的图像可以返回[数据URI](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs) 而不是路径。这适用于以下文件扩展名：bmp，gif，jpg，jpeg和png。由于[#1153](https://github.com/facebookincubator/create-react-app/issues/1153)导致SVG文件被排除在外
 
 Here is an example:
 
 ```js
 import React from 'react';
-import logo from './logo.png'; // Tell Webpack this JS file uses this image
+
+// Tell Webpack this JS file uses this image
+// 告诉Webpack这个JS文件使用这个图像
+import logo from './logo.png'; 
 
 console.log(logo); // /logo.84287d09.png
 
 function Header() {
   // Import result is the URL of your image
+  // 导入结果是您图像的URL
   return <img src={logo} alt="Logo" />;
 }
 
@@ -766,7 +793,11 @@ export default Header;
 
 This ensures that when the project is built, Webpack will correctly move the images into the build folder, and provide us with correct paths.
 
+这样可以确保项目建成后，Webpack将正确地将图像移动到构建文件夹中，并为我们提供正确的路径。
+
 This works in CSS too:
+
+这也适用于CSS：
 
 ```css
 .Logo {
@@ -776,37 +807,65 @@ This works in CSS too:
 
 Webpack finds all relative module references in CSS (they start with `./`) and replaces them with the final paths from the compiled bundle. If you make a typo or accidentally delete an important file, you will see a compilation error, just like when you import a non-existent JavaScript module. The final filenames in the compiled bundle are generated by Webpack from content hashes. If the file content changes in the future, Webpack will give it a different name in production so you don’t need to worry about long-term caching of assets.
 
+Webpack查找CSS中的所有相关模块引用（它们以`./`开头），并从编译的捆绑包中替换最终路径。如果您输入错误或意外删除重要文件，则会出现编译错误，就像导入不存在的JavaScript模块时一样。编译包中的最终文件名由Webpack利用内容的哈希值生成。如果将来文件内容发生变化，Webpack会在生产中给出不同的名称，因此您不必担心资源的长期缓存。
+
 Please be advised that this is also a custom feature of Webpack.
+
+请注意，这也是Webpack的自定义功能。
 
 **It is not required for React** but many people enjoy it (and React Native uses a similar mechanism for images).<br>
 An alternative way of handling static assets is described in the next section.
 
+对于React它不是必需的，但很多人都喜欢它(和React Native使用类似的图像机制).<br>
+
+下一节将介绍处理静态资源的另一种方法。
+
 ## Using the `public` Folder
 
+### 使用`public`文件夹
+
 >Note: this feature is available with `react-scripts@0.5.0` and higher.
+>
+>注意：此功能可用在react-scripts@0.5.0及更高版本。
 
 ### Changing the HTML
 
+### 更改HTML
+
 The `public` folder contains the HTML file so you can tweak it, for example, to [set the page title](#changing-the-page-title).
+
 The `<script>` tag with the compiled code will be added to it automatically during the build process.
+
+ `public` 文件夹包含HTML文件，以便您可以调整它，例如设置页面标题。
+
+编译代码的`<script>`标签将在构建过程中自动添加。
 
 ### Adding Assets Outside of the Module System
 
-You can also add other assets to the `public` folder.
+### 在模块系统之外添加资源
 
-Note that we normally encourage you to `import` assets in JavaScript files instead.
-For example, see the sections on [adding a stylesheet](#adding-a-stylesheet) and [adding images and fonts](#adding-images-fonts-and-files).
-This mechanism provides a number of benefits:
+You can also add other assets to the `public` folder.Note that we normally encourage you to `import` assets in JavaScript files instead.For example, see the sections on [adding a stylesheet](#adding-a-stylesheet) and [adding images and fonts](#adding-images-fonts-and-files).This mechanism provides a number of benefits:
+
+您还可以将其他资源添加到 `public` 文件夹。请注意，我们通常鼓励您以JavaScript文件`import` 资源。例如，请参阅[添加样式表](#adding-a-stylesheet)和[添加图像和字体](#adding-images-fonts-and-files)的部分。这个机制提供了许多好处：
 
 * Scripts and stylesheets get minified and bundled together to avoid extra network requests.
+* 脚本和样式表被缩小并捆绑在一起，以避免额外的网络请求。
 * Missing files cause compilation errors instead of 404 errors for your users.
+* 缺少文件会导致编译错误，而不是用户的404错误。
 * Result filenames include content hashes so you don’t need to worry about browsers caching their old versions.
+* 结果文件名包括内容散列，因此您不必担心浏览器会缓存其旧版本。
 
 However there is an **escape hatch** that you can use to add an asset outside of the module system.
 
+但是，您可以使用一个可用于在模块系统外部添加资产的**逃生舱口**。
+
 If you put a file into the `public` folder, it will **not** be processed by Webpack. Instead it will be copied into the build folder untouched.   To reference assets in the `public` folder, you need to use a special variable called `PUBLIC_URL`.
 
+如果将文件放入 `public` 文件夹，则不会被Webpack处理。相反，它将被复制到构建文件夹中。要引用 `public` 文件夹中的资源，您需要使用一个名为`PUBLIC_URL`的特殊变量。
+
 Inside `index.html`, you can use it like this:
+
+在`index.html`里面，你可以这样使用：
 
 ```html
 <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
@@ -814,42 +873,75 @@ Inside `index.html`, you can use it like this:
 
 Only files inside the `public` folder will be accessible by `%PUBLIC_URL%` prefix. If you need to use a file from `src` or `node_modules`, you’ll have to copy it there to explicitly specify your intention to make this file a part of the build.
 
+只有`public`文件夹中的文件才能被％PUBLIC_URL％前缀访问。如果您需要使用`src`或`node_modules`中的文件，那么您必须将其复制到其中才能明确指定您将该文件作为构建的一部分。
+
 When you run `npm run build`, Create React App will substitute `%PUBLIC_URL%` with a correct absolute path so your project works even if you use client-side routing or host it at a non-root URL.
 
+当你运行 `npm run build`时，Create React App将使用正确的绝对路径替换％PUBLIC_URL％，这样即使您使用客户端路由或将其托管在非根URL，您的项目也可以工作。
+
 In JavaScript code, you can use `process.env.PUBLIC_URL` for similar purposes:
+
+在JavaScript代码中，您可以使用process.env.PUBLIC_URL进行类似的操作：
 
 ```js
 render() {
   // Note: this is an escape hatch and should be used sparingly!
   // Normally we recommend using `import` for getting asset URLs
   // as described in “Adding Images and Fonts” above this section.
+  
+  // 注意：这是一个逃生舱口，应该谨慎使用！
+  // 通常，我们建议使用`import`获取资源URL
+  // 如本节上面的“添加图像和字体”中所述。
   return <img src={process.env.PUBLIC_URL + '/img/logo.png'} />;
 }
 ```
 
 Keep in mind the downsides of this approach:
 
+记住这种方法的缺点：
+
 * None of the files in `public` folder get post-processed or minified.
+* `public` 文件夹中的任何文件都不能进行后处理或缩小。
 * Missing files will not be called at compilation time, and will cause 404 errors for your users.
+* 在编译时不会调用缺少的文件，并会为您的用户造成404错误。
 * Result filenames won’t include content hashes so you’ll need to add query arguments or rename them every time they change.
+* 结果文件名不会包含内容散列，因此您需要添加查询参数或每次更改时重命名它们。
 
 ### When to Use the `public` Folder
+
+### 何时使用`public`文件夹
 
 Normally we recommend importing [stylesheets](#adding-a-stylesheet), [images, and fonts](#adding-images-fonts-and-files) from JavaScript.
 The `public` folder is useful as a workaround for a number of less common cases:
 
+通常我们建议从JavaScript导入[样式表](#adding-a-stylesheet)，[图像和字体](#adding-images-fonts-and-files)。
+
+`public` 文件夹作为一些不太常见情况的解决方法是有用的：
+
 * You need a file with a specific name in the build output, such as [`manifest.webmanifest`](https://developer.mozilla.org/en-US/docs/Web/Manifest).
+* 您需要在构建输出中具有特定名称的文件，如 [manifest.webmanifest](https://developer.mozilla.org/en-US/docs/Web/Manifest).
 * You have thousands of images and need to dynamically reference their paths.
+* 您有成千上万的图像，需要动态引用他们的路径。
 * You want to include a small script like [`pace.js`](http://github.hubspot.com/pace/docs/welcome/) outside of the bundled code.
+* 您希望在捆绑代码之外加入一个像 [`pace.js`](http://github.hubspot.com/pace/docs/welcome/) 一样的脚本。
 * Some library may be incompatible with Webpack and you have no other option but to include it as a `<script>` tag.
+* 某些库可能与Webpack不兼容，您没有其他选项，但将其作为`<script>`标签。
 
 Note that if you add a `<script>` that declares global variables, you also need to read the next section on using them.
 
+请注意，如果添加声明全局变量的`<script>`，则还需要阅读下一节如何使用它们。
+
 ## Using Global Variables
+
+### 使用全局变量
 
 When you include a script in the HTML file that defines global variables and try to use one of these variables in the code, the linter will complain because it cannot see the definition of the variable.
 
+当您在定义全局变量的HTML文件中包含一个脚本并尝试在代码中使用这些变量之一时，linter会抱怨，因为它看不到变量的定义。
+
 You can avoid this by reading the global variable explicitly from the `window` object, for example:
+
+您可以通过从 `window` 对象显式读取全局变量来避免这种情况，例如：
 
 ```js
 const $ = window.$;
@@ -857,13 +949,23 @@ const $ = window.$;
 
 This makes it obvious you are using a global variable intentionally rather than because of a typo.
 
+这显然你有意使用全局变量，而不是因为打字错误。
+
 Alternatively, you can force the linter to ignore any line by adding `// eslint-disable-line` after it.
+
+或者，您可以通过在其后添加// eslint-disable-line来强制linter忽略任何行。
 
 ## Adding Bootstrap
 
+### 添加Bootstrap库
+
 You don’t have to use [React Bootstrap](https://react-bootstrap.github.io) together with React but it is a popular library for integrating Bootstrap with React apps. If you need it, you can integrate it with Create React App by following these steps:
 
+您不必与React一起使用[React Bootstrap](https://react-bootstrap.github.io)，但它是将Bootstrap与React应用程序集成的流行库。如果需要，可以通过以下步骤将其与创建应用程序集成：
+
 Install React Bootstrap and Bootstrap from npm. React Bootstrap does not include Bootstrap CSS so this needs to be installed as well:
+
+从npm库中安装React Bootstrap和Bootstrap。React Bootstrap不包括Bootstrap CSS，因此还需要安装它们：
 
 ```
 npm install react-bootstrap --save
@@ -872,14 +974,18 @@ npm install bootstrap@3 --save
 
 Import Bootstrap CSS and optionally Bootstrap theme CSS in the beginning of your ```src/index.js``` file:
 
+在 ```src/index.js``` 文件的开头导入Bootstrap CSS和可选的Bootstrap主题CSS：
+
 ```js
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
-// Put any other imports below so that CSS from your
-// components takes precedence over default styles.
+// Put any other imports below so that CSS from your components takes precedence over default styles.
+// 在下面放置任何其他导入，以使您的组件中的CSS优先于默认样式。
 ```
 
 Import required React Bootstrap components within ```src/App.js``` file or your custom component files:
+
+在 ```src/App.js``` 文件或您的自定义组件文件中导入所需的React Bootstrap组件：
 
 ```js
 import { Navbar, Jumbotron, Button } from 'react-bootstrap';
@@ -887,58 +993,106 @@ import { Navbar, Jumbotron, Button } from 'react-bootstrap';
 
 Now you are ready to use the imported React Bootstrap components within your component hierarchy defined in the render method. Here is an example [`App.js`](https://gist.githubusercontent.com/gaearon/85d8c067f6af1e56277c82d19fd4da7b/raw/6158dd991b67284e9fc8d70b9d973efe87659d72/App.js) redone using React Bootstrap.
 
+现在，您可以使用导入的React Bootstrap组件在render方法中定义组件层次结构。以下是使用React Bootstrap重做[App.js](https://gist.githubusercontent.com/gaearon/85d8c067f6af1e56277c82d19fd4da7b/raw/6158dd991b67284e9fc8d70b9d973efe87659d72/App.js)的示例。
+
 ### Using a Custom Theme
+
+### 使用自定义主题
 
 Sometimes you might need to tweak the visual styles of Bootstrap (or equivalent package).<br>
 We suggest the following approach:
 
+有时您可能需要调整Bootstrap（或等效包）的视觉样式.<br>
+
+我们建议采纳以下方法：
+
 * Create a new package that depends on the package you wish to customize, e.g. Bootstrap.
+* 创建一个取决于您要自定义的包的新包, e.g. Bootstrap.
 * Add the necessary build steps to tweak the theme, and publish your package on npm.
+* 添加必要的构建步骤来调整主题，并在npm发布您的包。
 * Install your own theme npm package as a dependency of your app.
+* 安装您自己的主题npm软件包作为您的应用程序的依赖。
 
 Here is an example of adding a [customized Bootstrap](https://medium.com/@tacomanator/customizing-create-react-app-aa9ffb88165) that follows these steps.
 
+以下是添加按照这些步骤进行[自定义的Bootstrap](https://medium.com/@tacomanator/customizing-create-react-app-aa9ffb88165)的示例。
+
 ## Adding Flow
+
+### 添加流
 
 Flow is a static type checker that helps you write code with fewer bugs. Check out this [introduction to using static types in JavaScript](https://medium.com/@preethikasireddy/why-use-static-types-in-javascript-part-1-8382da1e0adb) if you are new to this concept.
 
+Flow是一种静态类型的检查器，可以帮助您编写更少错误的代码。如果您是这个概念的新手，请参阅[JavaScript中使用静态类型的介绍](https://medium.com/@preethikasireddy/why-use-static-types-in-javascript-part-1-8382da1e0adb) 。
+
 Recent versions of [Flow](http://flowtype.org/) work with Create React App projects out of the box.
+
+Flow的最新版本可以使用“Create React App”工具的开箱即用功能。
 
 To add Flow to a Create React App project, follow these steps:
 
+要将Flow添加到使用Create React App工具创建的项目中，请按照下列步骤操作：
+
 1. Run `npm install --save-dev flow-bin` (or `yarn add --dev flow-bin`).
+
 2. Add `"flow": "flow"` to the `scripts` section of your `package.json`.
+
 3. Run `npm run flow -- init` (or `yarn flow -- init`) to create a [`.flowconfig` file](https://flowtype.org/docs/advanced-configuration.html) in the root directory.
+
 4. Add `// @flow` to any files you want to type check (for example, to `src/App.js`).
 
-Now you can run `npm run flow` (or `yarn flow`) to check the files for type errors.
-You can optionally use an IDE like [Nuclide](https://nuclide.io/docs/languages/flow/) for a better integrated experience.
-In the future we plan to integrate it into Create React App even more closely.
+   ​
+
+1. 运行 `npm install --save-dev flow-bin` (或 `yarn add --dev flow-bin`)。
+2. 将 `"flow": "flow"` 添加到您的`package.json`的 `scripts` 部分。
+3. 运行 `npm run flow -- init` (或 `yarn flow -- init`)以在根目录中创建一个`.flowconfig`文件。
+4. 将 `// @flow` 添加到要进行类型检查的任何文件中（例如，到`src/App.js`）。
+
+Now you can run `npm run flow` (or `yarn flow`) to check the files for type errors. You can optionally use an IDE like [Nuclide](https://nuclide.io/docs/languages/flow/) for a better integrated experience. In the future we plan to integrate it into Create React App even more closely.
+
+现在，您可以运行 `npm run flow` (或 `yarn flow`) 来检查文件的类型错误。您可以选择使用像[Nuclide](https://nuclide.io/docs/languages/flow/) 这样的IDE来获得更好的集成体验。在将来，我们计划更加紧密地将其整合到Create React App工具中。
 
 To learn more about Flow, check out [its documentation](https://flowtype.org/).
 
+要了解有关Flow的更多信息，请查看其[文档](https://flowtype.org/)。
+
 ## Adding Custom Environment Variables
 
->Note: this feature is available with `react-scripts@0.2.3` and higher.
+### 添加自定义环境变量
 
-Your project can consume variables declared in your environment as if they were declared locally in your JS files. By
-default you will have `NODE_ENV` defined for you, and any other environment variables starting with
+>Note: this feature is available with `react-scripts@0.2.3` and higher.
+>
+>注意：此功能可用在`react-scripts@0.2.3`及更高版本。
+
+Your project can consume variables declared in your environment as if they were declared locally in your JS files. By default you will have `NODE_ENV` defined for you, and any other environment variables starting with
 `REACT_APP_`.
+
+您的项目可以在您的环境中使用声明的变量，就像它们在JS文件中本地声明一样。默认情况下，您将为您定义`NODE_ENV`，以及以`REACT_APP_`开头的任何其他环境变量。
 
 **The environment variables are embedded during the build time**. Since Create React App produces a static HTML/CSS/JS bundle, it can’t possibly read them at runtime. To read them at runtime, you would need to load HTML into memory on the server and replace placeholders in runtime, just like [described here](#injecting-data-from-the-server-into-the-page). Alternatively you can rebuild the app on the server anytime you change them.
 
+**环境变量在构建时嵌入。**由于Create React App生成了一个静态的HTML/CSS/JS包，所以在运行时无法读取它们。要在运行时读取它们，您需要将HTML加载到服务器上的内存中，并在运行时替换占位符，就像[这里所述](#injecting-data-from-the-server-into-the-page)。或者，您可以在更改服务器时重新构建应用程序。
+
 >Note: You must create custom environment variables beginning with `REACT_APP_`. Any other variables except `NODE_ENV` will be ignored to avoid accidentally [exposing a private key on the machine that could have the same name](https://github.com/facebookincubator/create-react-app/issues/865#issuecomment-252199527). Changing any environment variables will require you to restart the development server if it is running.
+>
+>注意：您必须创建以`REACT_APP_`开头的自定义环境变量。除了`NODE_ENV`之外的任何其他变量将被忽略，以[避免意外暴露可能具有相同名称的机器上的私钥](https://github.com/facebookincubator/create-react-app/issues/865#issuecomment-252199527)。更改任何环境变量将需要重新启动开发服务器，如果它正在运行。
 
 These environment variables will be defined for you on `process.env`. For example, having an environment
 variable named `REACT_APP_SECRET_CODE` will be exposed in your JS as `process.env.REACT_APP_SECRET_CODE`.
 
+这些环境变量将在`process.env`上为您定义。例如，将一个名为`REACT_APP_SECRET_CODE`的环境变量作为`process.env.REACT_APP_SECRET_CODE`暴露在您的JS中。
+
 There is also a special built-in environment variable called `NODE_ENV`. You can read it from `process.env.NODE_ENV`. When you run `npm start`, it is always equal to `'development'`, when you run `npm test` it is always equal to `'test'`, and when you run `npm run build` to make a production bundle, it is always equal to `'production'`. **You cannot override `NODE_ENV` manually.** This prevents developers from accidentally deploying a slow development build to production.
 
-These environment variables can be useful for displaying information conditionally based on where the project is
-deployed or consuming sensitive data that lives outside of version control.
+还有一个特殊的内置环境变量`NODE_ENV`。你可以从`process.env.NODE_ENV`读取它。当你运行`npm start`时，它总是等于`development`，当你运行`npm test`它总是等于`test`，当你运行 `npm run build` 来生成一个生产包，它总是等于`production` 。**您不能手动覆盖NODE_ENV。**这样可以防止开发人员意外地将缓慢的开发构建部署到生产环境中。
 
-First, you need to have environment variables defined. For example, let’s say you wanted to consume a secret defined
-in the environment inside a `<form>`:
+These environment variables can be useful for displaying information conditionally based on where the project is deployed or consuming sensitive data that lives outside of version control.
+
+这些环境变量对于有条件地显示信息[可能会有助于基于项目的部署位置或消费存在于版本控制之外的敏感数据]。
+
+First, you need to have environment variables defined. For example, let’s say you wanted to consume a secret defined in the environment inside a `<form>`:
+
+首先，您需要定义环境变量。例如，假设您想要使用`<form>`中的环境中定义的秘钥：
 
 ```jsx
 render() {
@@ -955,7 +1109,11 @@ render() {
 
 During the build, `process.env.REACT_APP_SECRET_CODE` will be replaced with the current value of the `REACT_APP_SECRET_CODE` environment variable. Remember that the `NODE_ENV` variable will be set for you automatically.
 
+在构建期间，`process.env.REACT_APP_SECRET_CODE`将被`REACT_APP_SECRET_CODE`环境变量的当前值替换。请记住，`NODE_ENV`变量将自动为您设置。
+
 When you load the app in the browser and inspect the `<input>`, you will see its value set to `abcdef`, and the bold text will show the environment provided when using `npm start`:
+
+当您在浏览器中加载应用程序并检查`<input>`时，您将看到其值设置为`abcdef`，粗体文本将显示使用 `npm start`时提供的环境：
 
 ```html
 <div>
@@ -966,11 +1124,13 @@ When you load the app in the browser and inspect the `<input>`, you will see its
 </div>
 ```
 
-The above form is looking for a variable called `REACT_APP_SECRET_CODE` from the environment. In order to consume this
-value, we need to have it defined in the environment. This can be done using two ways: either in your shell or in
-a `.env` file. Both of these ways are described in the next few sections.
+The above form is looking for a variable called `REACT_APP_SECRET_CODE` from the environment. In order to consume this value, we need to have it defined in the environment. This can be done using two ways: either in your shell or in a `.env` file. Both of these ways are described in the next few sections.
+
+上面的表单正在从环境中寻找一个名为`REACT_APP_SECRET_CODE`的变量。为了消耗这个值，我们需要在环境中定义它。这可以通过两种方式完成：在shell或`.env`文件中。这两种方法将在接下来的几节中进行描述。
 
 Having access to the `NODE_ENV` is also useful for performing actions conditionally:
+
+访问`NODE_ENV`对于有条件地执行操作也很有用：
 
 ```js
 if (process.env.NODE_ENV !== 'production') {
@@ -980,11 +1140,19 @@ if (process.env.NODE_ENV !== 'production') {
 
 When you compile the app with `npm run build`, the minification step will strip out this condition, and the resulting bundle will be smaller.
 
+当您使用 `npm run build`编译应用程序时，缩小步骤将剥离此条件，并且生成的包将更小。
+
 ### Referencing Environment Variables in the HTML
 
+### 引用HTML中的环境变量
+
 >Note: this feature is available with `react-scripts@0.9.0` and higher.
+>
+>注意：此功能可用在`react-scripts@0.9.0`及更高版本。
 
 You can also access the environment variables starting with `REACT_APP_` in the `public/index.html`. For example:
+
+您还可以访问 `public/index.html`中的`REACT_APP_`开头的环境变量。例如：
 
 ```html
 <title>%REACT_APP_WEBSITE_NAME%</title>
