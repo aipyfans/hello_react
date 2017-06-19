@@ -57,7 +57,7 @@ You can find the most recent version of this guide [here](https://github.com/fac
 - [Pre-Rendering into Static HTML Files](#pre-rendering-into-static-html-files) 预渲染成静态HTML文件
 - [Injecting Data from the Server into the Page](#injecting-data-from-the-server-into-the-page) 将数据从服务器注入页面
 - [Running Tests](#running-tests) 运行测试
-  - [Filename Conventions](#filename-conventions) 文件名会话
+  - [Filename Conventions](#filename-conventions) 文件名约定
   - [Command Line Interface](#command-line-interface) 命令行界面
   - [Version Control Integration](#version-control-integration) 版本控制集成
   - [Writing Tests](#writing-tests) 写测试
@@ -1278,24 +1278,37 @@ Create React App will add decorator support when the specification advances to a
 
 ## Integrating with an API Backend
 
-These tutorials will help you to integrate your app with an API backend running on another port,
-using `fetch()` to access it.
+### 与后端API集成
+
+These tutorials will help you to integrate your app with an API backend running on another port, using `fetch()` to access it.
+
+这些教程将帮助您将应用程序与在另一个端口上运行的API后端集成，使用`fetch()` 来访问它。
 
 ### Node
-Check out [this tutorial](https://www.fullstackreact.com/articles/using-create-react-app-with-a-server/).
-You can find the companion GitHub repository [here](https://github.com/fullstackreact/food-lookup-demo).
+Check out [this tutorial](https://www.fullstackreact.com/articles/using-create-react-app-with-a-server/). You can find the companion GitHub repository [here](https://github.com/fullstackreact/food-lookup-demo).
+
+看看[这个教程](https://www.fullstackreact.com/articles/using-create-react-app-with-a-server/)。您可以在[这里](https://github.com/fullstackreact/food-lookup-demo)找到配套的GitHub库。
 
 ### Ruby on Rails
 
-Check out [this tutorial](https://www.fullstackreact.com/articles/how-to-get-create-react-app-to-work-with-your-rails-api/).
-You can find the companion GitHub repository [here](https://github.com/fullstackreact/food-lookup-demo-rails).
+Check out [this tutorial](https://www.fullstackreact.com/articles/how-to-get-create-react-app-to-work-with-your-rails-api/).You can find the companion GitHub repository [here](https://github.com/fullstackreact/food-lookup-demo-rails).
+
+看看[这个教程](https://www.fullstackreact.com/articles/how-to-get-create-react-app-to-work-with-your-rails-api/)。您可以在[这里](https://github.com/fullstackreact/food-lookup-demo-rails)找到配套的GitHub库。
 
 ## Proxying API Requests in Development
 
+### 在开发中代理API请求
+
 >Note: this feature is available with `react-scripts@0.2.3` and higher.
+>
+>注意：此功能可用在react-scripts@0.2.3及更高版本。
 
 People often serve the front-end React app from the same host and port as their backend implementation.<br>
 For example, a production setup might look like this after the app is deployed:
+
+人们经常从后端实施相同的主机和端口为前端的React应用程序提供服务.<br>
+
+例如，应用程序部署后，生产设置可能会如下所示：
 
 ```
 /             - static server returns index.html with React app
@@ -1305,7 +1318,11 @@ For example, a production setup might look like this after the app is deployed:
 
 Such setup is **not** required. However, if you **do** have a setup like this, it is convenient to write requests like `fetch('/api/todos')` without worrying about redirecting them to another host or port during development.
 
+不需要这样的设置。但是，如果您有这样的设置，可以方便地编写`fetch('/api/todos')` 等请求，而不用担心在开发过程中将它们重定向到另一个主机或端口。
+
 To tell the development server to proxy any unknown requests to your API server in development, add a `proxy` field to your `package.json`, for example:
+
+在开发中,要告诉开发服务器代理对您的API服务器的任何未知请求，请向您的`package.json`添加一个`proxy`字段，例如：
 
 ```js
   "proxy": "http://localhost:4000",
@@ -1313,7 +1330,11 @@ To tell the development server to proxy any unknown requests to your API server 
 
 This way, when you `fetch('/api/todos')` in development, the development server will recognize that it’s not a static asset, and will proxy your request to `http://localhost:4000/api/todos` as a fallback. The development server will only attempt to send requests without a `text/html` accept header to the proxy.
 
+这样，当您在开发中`fetch('/api/todos')` 时，开发服务器将会认识到它不是静态资源，并将代理您的请求到`http://localhost:4000/api/todos` 作为回调。开发服务器将只尝试发送没有 `text/html` 接收标头的请求到代理端口。
+
 Conveniently, this avoids [CORS issues](http://stackoverflow.com/questions/21854516/understanding-ajax-cors-and-security-considerations) and error messages like this in development:
+
+这样可以方便地避免在开发过程中发生[CORS issues](http://stackoverflow.com/questions/21854516/understanding-ajax-cors-and-security-considerations)和错误消息：
 
 ```
 Fetch API cannot load http://localhost:4000/api/todos. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:3000' is therefore not allowed access. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
@@ -1321,22 +1342,41 @@ Fetch API cannot load http://localhost:4000/api/todos. No 'Access-Control-Allow-
 
 Keep in mind that `proxy` only has effect in development (with `npm start`), and it is up to you to ensure that URLs like `/api/todos` point to the right thing in production. You don’t have to use the `/api` prefix. Any unrecognized request without a `text/html` accept header will be redirected to the specified `proxy`.
 
+请记住，代理仅在开发中有效 (使用 `npm start`)，并且由您来确保像 `/api/todos` 这样的URL指向生产中的正确的东西。您不必使用 `/api` 前缀。任何无法识别的没有 `text/html` 接收标头的请求，将被重定向到指定的 `proxy`.
+
 The `proxy` option supports HTTP, HTTPS and WebSocket connections.<br>
 If the `proxy` option is **not** flexible enough for you, alternatively you can:
 
+ `proxy` 选项支持HTTP，HTTPS和WebSocket连接.<br>
+
+如果 `proxy` 选项对您不够灵活，或者您可以：
+
 * [Configure the proxy yourself](#configuring-the-proxy-manually)
+* [自己配置代理](#configuring-the-proxy-manually)
 * Enable CORS on your server ([here’s how to do it for Express](http://enable-cors.org/server_expressjs.html)).
+* 在您的服务器上启用CORS（[以下是Express的操作方法](http://enable-cors.org/server_expressjs.html)）。
 * Use [environment variables](#adding-custom-environment-variables) to inject the right server host and port into your app.
+* 使用[环境变量](#adding-custom-environment-variables) 将正确的服务器主机和端口注入到应用程序中。
 
 ### "Invalid Host Header" Errors After Configuring Proxy
 
+### 配置代理后的“主机头无效”错误
+
 When you enable the `proxy` option, you opt into a more strict set of host checks. This is necessary because leaving the backend open to remote hosts makes your computer vulnerable to DNS rebinding attacks. The issue is explained in [this article](https://medium.com/webpack/webpack-dev-server-middleware-security-issues-1489d950874a) and [this issue](https://github.com/webpack/webpack-dev-server/issues/887).
+
+启用代理选项后，您可以选择更严格的主机检查。这是必要的，因为将后端打开到远程主机会使您的计算机容易受到DNS重新绑定攻击。此问题在[这篇文章](https://medium.com/webpack/webpack-dev-server-middleware-security-issues-1489d950874a)和[这个问题](https://github.com/webpack/webpack-dev-server/issues/887)进行了解释。
 
 This shouldn’t affect you when developing on `localhost`, but if you develop remotely like [described here](https://github.com/facebookincubator/create-react-app/issues/2271), you will see this error in the browser after enabling the `proxy` option:
 
+这应该不影响你在本地主机上开发，但是如果你像[这里描述](https://github.com/facebookincubator/create-react-app/issues/2271)的那样进行远程开发，启用代理选项后，您将在浏览器中看到此错误：
+
 >Invalid Host header
+>
+>主机头无效
 
 To work around it, you can specify your public development host in a file called `.env.development` in the root of your project:
+
+要解决它，您可以在项目根目录中的一个名为`.env.development`的文件中指定您的公共开发主机：
 
 ```
 HOST=mypublicdevhost.com
@@ -1344,22 +1384,38 @@ HOST=mypublicdevhost.com
 
 If you restart the development server now and load the app from the specified host, it should work.
 
+如果现在重新启动开发服务器并从指定的主机加载该应用程序，它应该会正常工作。
+
 If you are still having issues or if you’re using a more exotic environment like a cloud editor, you can bypass the host check completely by adding a line to `.env.development.local`. **Note that this is dangerous and exposes your machine to remote code execution from malicious websites:**
 
+如果您仍然遇到问题，或者如果您正在使用更加异域情调的环境，如云编辑器，您可以通过向`.env.development.local`添加一行来完全绕过主机检查。
+
 ```
-# NOTE: THIS IS DANGEROUS!
+# NOTE: THIS IS DANGEROUS! 注意：这是危险的！
 # It exposes your machine to attacks from the websites you visit.
+# 它暴露您的机器将会导致您访问的的网站被攻击。
 DANGEROUSLY_DISABLE_HOST_CHECK=true
 ```
 
 We don’t recommend this approach.
 
+我们不推荐这种方法。
+
 ### Configuring the Proxy Manually
 
+### 手动配置代理
+
 >Note: this feature is available with `react-scripts@1.0.0` and higher.
+>
+>注意：此功能可用在react-scripts@1.0.0及更高版本。
 
 If the `proxy` option is **not** flexible enough for you, you can specify an object in the following form (in `package.json`).<br>
 You may also specify any configuration value [`http-proxy-middleware`](https://github.com/chimurai/http-proxy-middleware#options) or [`http-proxy`](https://github.com/nodejitsu/node-http-proxy#options) supports.
+
+如果代理选项对您不够灵活，您可以使用以下格式指定一个对象（在`package.json`中）。
+
+您还可以指定任何配置值 [`http-proxy-middleware`](https://github.com/chimurai/http-proxy-middleware#options) 或 [`http-proxy`](https://github.com/nodejitsu/node-http-proxy#options) 支持。
+
 ```js
 {
   // ...
@@ -1376,8 +1432,12 @@ You may also specify any configuration value [`http-proxy-middleware`](https://g
 
 All requests matching this path will be proxies, no exceptions. This includes requests for `text/html`, which the standard `proxy` option does not proxy.
 
-If you need to specify multiple proxies, you may do so by specifying additional entries.
-You may also narrow down matches using `*` and/or `**`, to match the path exactly or any subpath.
+与此路径匹配的所有请求都将是代理，没有例外。这包括 `text/html`的请求，标准代理选项不代理。
+
+If you need to specify multiple proxies, you may do so by specifying additional entries. You may also narrow down matches using `*` and/or `**`, to match the path exactly or any subpath.
+
+如果需要指定多个代理，则可以通过指定其他条目来实现。您还可以使用 `*` 和/或 `**`缩小匹配，以准确匹配路径或任何子路径。
+
 ```js
 {
   // ...
@@ -1414,11 +1474,19 @@ You may also narrow down matches using `*` and/or `**`, to match the path exactl
 
 ## Using HTTPS in Development
 
+### 在开发中使用HTTPS
+
 >Note: this feature is available with `react-scripts@0.4.0` and higher.
+>
+>注意：此功能可用在react-scripts@0.4.0及更高版本。
 
 You may require the dev server to serve pages over HTTPS. One particular case where this could be useful is when using [the "proxy" feature](#proxying-api-requests-in-development) to proxy requests to an API server when that API server is itself serving HTTPS.
 
 To do this, set the `HTTPS` environment variable to `true`, then start the dev server as usual with `npm start`:
+
+您可能需要开发服务器提供HTTPS页面服务。一个特别的情况可能是有用的，当API服务器本身服务于HTTPS时，[使用“代理”功能](#proxying-api-requests-in-development)来代理对API服务器的请求。
+
+为此，请将`HTTPS`环境变量设置为`true`，然后像以往那样以`npm start`启动开发服务器：
 
 #### Windows (cmd.exe)
 
@@ -1426,7 +1494,7 @@ To do this, set the `HTTPS` environment variable to `true`, then start the dev s
 set HTTPS=true&&npm start
 ```
 
-(Note: the lack of whitespace is intentional.)
+(Note: the lack of whitespace is intentional.注意：缺乏空白是有意的。)
 
 #### Linux, macOS (Bash)
 
@@ -1436,9 +1504,15 @@ HTTPS=true npm start
 
 Note that the server will use a self-signed certificate, so your web browser will almost definitely display a warning upon accessing the page.
 
+请注意，服务器将使用自签名证书，因此您的Web浏览器几乎肯定会在访问页面时显示警告。
+
 ## Generating Dynamic `<meta>` Tags on the Server
 
+### 在服务器上生成动态`<meta>`标签
+
 Since Create React App doesn’t support server rendering, you might be wondering how to make `<meta>` tags dynamic and reflect the current URL. To solve this, we recommend to add placeholders into the HTML, like this:
+
+由于Create React App不支持服务器渲染，您可能会想知道如何使`<meta>`标签动态化并反映当前的URL。为了解决这个问题，我们建议在HTML中添加占位符，如下所示：
 
 ```html
 <!doctype html>
@@ -1450,21 +1524,39 @@ Since Create React App doesn’t support server rendering, you might be wonderin
 
 Then, on the server, regardless of the backend you use, you can read `index.html` into memory and replace `__OG_TITLE__`, `__OG_DESCRIPTION__`, and any other placeholders with values depending on the current URL. Just make sure to sanitize and escape the interpolated values so that they are safe to embed into HTML!
 
+然后，在服务器上，无论您使用的后端如何，您可以将`index.html`读入内存，并根据当前URL替换`__OG_TITLE__`，`__OG_DESCRIPTION__`和任何其他具有值的占位符。只需确保清理和转义内插的值，以便它们可以安全地嵌入到HTML中！
+
 If you use a Node server, you can even share the route matching logic between the client and the server. However duplicating it also works fine in simple cases.
+
+如果使用节点服务器，您甚至可以在客户端和服务器之间共享路由匹配逻辑。但是在简单的情况下，复制它也可以正常工作。
 
 ## Pre-Rendering into Static HTML Files
 
+### **预渲染成静态HTML文件**
+
 If you’re hosting your `build` with a static hosting provider you can use [react-snapshot](https://www.npmjs.com/package/react-snapshot) to generate HTML pages for each route, or relative link, in your application. These pages will then seamlessly become active, or “hydrated”, when the JavaScript bundle has loaded.
+
+如果您使用静态主机提供商托管您的构建程序，则可以使用[react-snapshot](https://www.npmjs.com/package/react-snapshot)为应用程序中的每个路由或相对链接生成HTML页面。然后，这些页面将在JavaScript软件包加载时无缝地变为活动状态或“水合”。
 
 There are also opportunities to use this outside of static hosting, to take the pressure off the server when generating and caching routes.
 
+还有机会在静态托管之外使用它，在生成和缓存路由时将压力从服务器上取下。
+
 The primary benefit of pre-rendering is that you get the core content of each page _with_ the HTML payload—regardless of whether or not your JavaScript bundle successfully downloads. It also increases the likelihood that each route of your application will be picked up by search engines.
+
+预渲染的主要优点是您可以使用HTML有效内容获取每个页面的核心内容，而不管您的JavaScript软件包是否成功下载。这也增加了您的应用程序的每个路由将被搜索引擎拾取的可能性。
 
 You can read more about [zero-configuration pre-rendering (also called snapshotting) here](https://medium.com/superhighfives/an-almost-static-stack-6df0a2791319).
 
+您可以在这里阅读有关[零配置预渲染的更多信息（也称为快照）](https://medium.com/superhighfives/an-almost-static-stack-6df0a2791319)。
+
 ## Injecting Data from the Server into the Page
 
+### 将数据从服务器注入页面
+
 Similarly to the previous section, you can leave some placeholders in the HTML that inject global variables, for example:
+
+与上一节类似，您可以在注入全局变量的HTML中留下一些占位符，例如：
 
 ```js
 <!doctype html>
@@ -1477,52 +1569,96 @@ Similarly to the previous section, you can leave some placeholders in the HTML t
 
 Then, on the server, you can replace `__SERVER_DATA__` with a JSON of real data right before sending the response. The client code can then read `window.SERVER_DATA` to use it. **Make sure to [sanitize the JSON before sending it to the client](https://medium.com/node-security/the-most-common-xss-vulnerability-in-react-js-applications-2bdffbcc1fa0) as it makes your app vulnerable to XSS attacks.**
 
+然后，在服务器上，您可以在发送响应之前将`__SERVER_DATA__`替换为真实数据的JSON。客户端代码可以读取`window.SERVER_DATA`来使用它。**确保在将[JSON发送到客户端之前进行清理](https://medium.com/node-security/the-most-common-xss-vulnerability-in-react-js-applications-2bdffbcc1fa0) ，因为它使您的应用程序易受XSS攻击。**
+
 ## Running Tests
+
+### 运行测试
 
 >Note: this feature is available with `react-scripts@0.3.0` and higher.<br>
 >[Read the migration guide to learn how to enable it in older projects!](https://github.com/facebookincubator/create-react-app/blob/master/CHANGELOG.md#migrating-from-023-to-030)
+>
+>注意：此功能可用在react-scripts@0.3.0及更高版本。
+>
+>[阅读迁移指南，了解如何在旧项目中启用它！](https://github.com/facebookincubator/create-react-app/blob/master/CHANGELOG.md#migrating-from-023-to-030)
 
 Create React App uses [Jest](https://facebook.github.io/jest/) as its test runner. To prepare for this integration, we did a [major revamp](https://facebook.github.io/jest/blog/2016/09/01/jest-15.html) of Jest so if you heard bad things about it years ago, give it another try.
 
+Create React App使用[Jest](https://facebook.github.io/jest/)作为其测试运行器。为了做好这个整合的准备，我们做了一个[重大改革](https://facebook.github.io/jest/blog/2016/09/01/jest-15.html)的Jest，所以如果你听到很多年前的坏事，再试一次。
+
 Jest is a Node-based runner. This means that the tests always run in a Node environment and not in a real browser. This lets us enable fast iteration speed and prevent flakiness.
+
+Jest是一个基于Node的运行器。这意味着测试总是在Node环境中运行，而不是在真实的浏览器中运行。这使我们能够实现加快迭代速度并防止碎片化。
 
 While Jest provides browser globals such as `window` thanks to [jsdom](https://github.com/tmpvar/jsdom), they are only approximations of the real browser behavior. Jest is intended to be used for unit tests of your logic and your components rather than the DOM quirks.
 
+虽然Jest提供浏览器全局变量，如 `window` 感谢 [jsdom](https://github.com/tmpvar/jsdom)，但它们只是和真正的浏览器的行为相似。 Jest旨在用于您的逻辑和组件的单元测试，而不是DOM的差异。
+
 We recommend that you use a separate tool for browser end-to-end tests if you need them. They are beyond the scope of Create React App.
+
+如果需要，我们建议您使用单独的浏览器端到端测试工具。它们超出了Create React App的范围。
 
 ### Filename Conventions
 
+### 文件名约定
+
 Jest will look for test files with any of the following popular naming conventions:
 
-* Files with `.js` suffix in `__tests__` folders.
-* Files with `.test.js` suffix.
-* Files with `.spec.js` suffix.
+Jest将使用以下任何常见的命名规则来查找测试文件：
+
+* Files with `.js` suffix in `__tests__` folders. `__tests__`文件夹中带有`.js`后缀的文件。
+* Files with `.test.js` suffix. 带有`.test.js`后缀的文件。
+* Files with `.spec.js` suffix. 带有`.spec.js`后缀的文件。
 
 The `.test.js` / `.spec.js` files (or the `__tests__` folders) can be located at any depth under the `src` top level folder.
 
+ `.test.js` / `.spec.js` 文件（或`__tests__`文件夹）可以位于`src`顶级文件夹下的任意深度。
+
 We recommend to put the test files (or `__tests__` folders) next to the code they are testing so that relative imports appear shorter. For example, if `App.test.js` and `App.js` are in the same folder, the test just needs to `import App from './App'` instead of a long relative path. Colocation also helps find tests more quickly in larger projects.
+
+我们建议将测试文件（或`__tests__`文件夹）放在正在测试的代码旁边，以使相对导入更短。例如，如果`App.test.js`和`App.js`在同一个文件夹中，测试只需要 `import App from './App'` ，而不是长的相对路径。这样还有助于在更大的项目中更快地找到测试。
 
 ### Command Line Interface
 
+### 命令行界面
+
 When you run `npm test`, Jest will launch in the watch mode. Every time you save a file, it will re-run the tests, just like `npm start` recompiles the code.
 
+当您运行`npm test`时，Jest将以观察模式启动。每次保存文件时，都会重新运行测试，就像 `npm start` 重新编译代码一样。
+
 The watcher includes an interactive command-line interface with the ability to run all tests, or focus on a search pattern. It is designed this way so that you can keep it open and enjoy fast re-runs. You can learn the commands from the “Watch Usage” note that the watcher prints after every run:
+
+观察者包括交互式命令行界面，具有运行所有测试的能力，或专注于搜索模式。它是这样设计的，以便您可以保持打开并享受快速重新运行。您可以从“观察使用情况”注意中了解每次运行后观察者打印的命令：
 
 ![Jest watch mode](http://facebook.github.io/jest/img/blog/15-watch.gif)
 
 ### Version Control Integration
 
+### 版本控制集成
+
 By default, when you run `npm test`, Jest will only run the tests related to files changed since the last commit. This is an optimization designed to make your tests runs fast regardless of how many tests you have. However it assumes that you don’t often commit the code that doesn’t pass the tests.
+
+默认情况下，当您运行`npm test`时，Jest将仅运行与上次提交后更改的文件相关的测试。这是一个优化，旨在使您的测试快速运行，无论您有多少测试。但是，它假定您不经常提交不通过测试的代码。
 
 Jest will always explicitly mention that it only ran tests related to the files changed since the last commit. You can also press `a` in the watch mode to force Jest to run all tests.
 
+Jest将始终明确提到，它只运行与上次提交后更改的文件相关的测试。您也可以按观察表模式强制Jest运行所有测试。
+
 Jest will always run all tests on a [continuous integration](#continuous-integration) server or if the project is not inside a Git or Mercurial repository.
 
+Jest将始终在[持续集成](#continuous-integration)的服务器上运行所有测试，或者该项目不在Git或Mercurial资源库中。
+
 ### Writing Tests
+
+### 写测试
 
 To create tests, add `it()` (or `test()`) blocks with the name of the test and its code. You may optionally wrap them in `describe()` blocks for logical grouping but this is neither required nor recommended.
 
 Jest provides a built-in `expect()` global function for making assertions. A basic test could look like this:
+
+要创建测试，请使用测试名称及其代码添加`it()` (or `test()`)块。您可以选择将其包装在 `describe()` 块中进行逻辑分组，但这不是必需的，也不是推荐的。
+
+Jest提供了一个内置的 `expect()` 全局函数来进行断言。基本测试可能如下所示：
 
 ```js
 import sum from './sum';
@@ -1536,11 +1672,21 @@ it('sums numbers', () => {
 All `expect()` matchers supported by Jest are [extensively documented here](http://facebook.github.io/jest/docs/expect.html).<br>
 You can also use [`jest.fn()` and `expect(fn).toBeCalled()`](http://facebook.github.io/jest/docs/expect.html#tohavebeencalled) to create “spies” or mock functions.
 
+Jest支持的所有`expect()`匹配器都在[这里进行了广泛的记录](http://facebook.github.io/jest/docs/expect.html)。
+
+您也可以使用 [`jest.fn()` and `expect(fn).toBeCalled()`](http://facebook.github.io/jest/docs/expect.html#tohavebeencalled)创建“间谍”或模拟函数。
+
 ### Testing Components
+
+### 测试组件
 
 There is a broad spectrum of component testing techniques. They range from a “smoke test” verifying that a component renders without throwing, to shallow rendering and testing some of the output, to full rendering and testing component lifecycle and state changes.
 
+这有广泛的组件测试技术。它们的范围从“Smoke Test” ，验证组件是否在不抛出的情况下渲染，浅渲染和测试某些输出，完全渲染和测试组件生命周期和状态更改。
+
 Different projects choose different testing tradeoffs based on how often components change, and how much logic they contain. If you haven’t decided on a testing strategy yet, we recommend that you start with creating simple smoke tests for your components:
+
+不同的项目根据组件变化的频率及其包含的逻辑选择不同的测试权衡进行取舍。如果您尚未决定测试策略，我们建议您首先为组件创建简单的`Smoke Test`：
 
 ```js
 import React from 'react';
@@ -1555,9 +1701,15 @@ it('renders without crashing', () => {
 
 This test mounts a component and makes sure that it didn’t throw during rendering. Tests like this provide a lot value with very little effort so they are great as a starting point, and this is the test you will find in `src/App.test.js`.
 
+该测试挂在了一个组件，并确保它在渲染过程中没有抛出错误。这样的测试通过很少的努力提供了很多价值，所以他们是伟大的起点，这是你将在`src/App.test.js`中找到的测试。
+
 When you encounter bugs caused by changing components, you will gain a deeper insight into which parts of them are worth testing in your application. This might be a good time to introduce more specific tests asserting specific expected output or behavior.
 
+当您遇到由更改组件导致的错误时，您将深入了解其中哪些部分在您的应用程序中值得测试。这可能是引入更具体的测试来判断具体的预期输出或行为的好时机。
+
 If you’d like to test components in isolation from the child components they render, we recommend using [`shallow()` rendering API](http://airbnb.io/enzyme/docs/api/shallow.html) from [Enzyme](http://airbnb.io/enzyme/). You can write a smoke test with it too:
+
+如果您想要从他们呈现的子组件中孤立测试组件，我们建议使用Enzyme中的[`shallow()` 渲染 API](http://airbnb.io/enzyme/docs/api/shallow.html) 。你也可以写Smoke Test：
 
 ```sh
 npm install --save-dev enzyme react-test-renderer
@@ -1575,9 +1727,15 @@ it('renders without crashing', () => {
 
 Unlike the previous smoke test using `ReactDOM.render()`, this test only renders `<App>` and doesn’t go deeper. For example, even if `<App>` itself renders a `<Button>` that throws, this test will pass. Shallow rendering is great for isolated unit tests, but you may still want to create some full rendering tests to ensure the components integrate correctly. Enzyme supports [full rendering with `mount()`](http://airbnb.io/enzyme/docs/api/mount.html), and you can also use it for testing state changes and component lifecycle.
 
+与以前使用`ReactDOM.render()`的Smoke Test不同，这个测试仅仅渲染`<App>`，而不会更深入。例如，即使`<App>`本身渲染抛出的`<Button>`，此测试也将通过。浅渲染非常适合隔离单元测试，但您仍然可能需要创建一些完整的渲染测试，以确保组件正确集成。Enzyme支持[使用`mount()`完全呈现](http://airbnb.io/enzyme/docs/api/mount.html)，还可以使用它来测试状态更改和组件生命周期。
+
 You can read the [Enzyme documentation](http://airbnb.io/enzyme/) for more testing techniques. Enzyme documentation uses Chai and Sinon for assertions but you don’t have to use them because Jest provides built-in `expect()` and `jest.fn()` for spies.
 
 Here is an example from Enzyme documentation that asserts specific output, rewritten to use Jest matchers:
+
+您可以阅读[Enzyme文档](http://airbnb.io/enzyme/)了解更多测试技术。Enzyme文档使用Chai和Sinon作为断言，但您不必使用它们，因为Jest为间谍提供了内置的 `expect()` 和 `jest.fn()` 。
+
+以下是Enzyme文档中的一个例子，该文档声明了特定输出，重写为使用Jest匹配器：
 
 ```js
 import React from 'react';
@@ -1595,13 +1753,21 @@ it('renders welcome message', () => {
 All Jest matchers are [extensively documented here](http://facebook.github.io/jest/docs/expect.html).<br>
 Nevertheless you can use a third-party assertion library like [Chai](http://chaijs.com/) if you want to, as described below.
 
+所有Jest匹配器在[这里被广泛记录](http://facebook.github.io/jest/docs/expect.html)。
+
+不过，如下所述，您可以使用像 [Chai](http://chaijs.com/) 这样的第三方断言库。
+
 Additionally, you might find [jest-enzyme](https://github.com/blainekasten/enzyme-matchers) helpful to simplify your tests with readable matchers. The above `contains` code can be written simpler with jest-enzyme.
+
+此外，您可能会发现[jest-enzyme](https://github.com/blainekasten/enzyme-matchers)有助于简化您的测试与可读匹配器。以上包含的代码可以用jest-enzyme更简单。
 
 ```js
 expect(wrapper).toContainReact(welcome)
 ```
 
 To setup jest-enzyme with Create React App, follow the instructions for [initializing your test environment](#initializing-test-environment) to import `jest-enzyme`. **Note that currently only version 2.x is compatible with Create React App.**
+
+要使用Create React App设置jest-enzyme，请按照[初始化测试环境](#initializing-test-environment)的说明导入jest-enzyme。**请注意，目前只有2.x版本与Create React App兼容**
 
 ```sh
 npm install --save-dev jest-enzyme@2.x
@@ -1612,12 +1778,17 @@ npm install --save-dev jest-enzyme@2.x
 import 'jest-enzyme';
 ```
 
-
 ### Using Third Party Assertion Libraries
+
+### 使用第三方断言库
 
 We recommend that you use `expect()` for assertions and `jest.fn()` for spies. If you are having issues with them please [file those against Jest](https://github.com/facebook/jest/issues/new), and we’ll fix them. We intend to keep making them better for React, supporting, for example, [pretty-printing React elements as JSX](https://github.com/facebook/jest/pull/1566).
 
+我们建议您使用 `expect()` 的断言和 `jest.fn()` 作为间谍。如果您遇到问题，请[提交给Jest](https://github.com/facebook/jest/issues/new)，我们会解决这些问题。我们打算继续使他们更好地支持React，例如，完美的[打印React元素作为JSX](https://github.com/facebook/jest/pull/1566)。
+
 However, if you are used to other libraries, such as [Chai](http://chaijs.com/) and [Sinon](http://sinonjs.org/), or if you have existing code using them that you’d like to port over, you can import them normally like this:
+
+但是，如果您习惯于其他库，例如[Chai](http://chaijs.com/)和[Sinon](http://sinonjs.org/)，或者如果您现有的代码使用您想要移植的代码，则可以像这样导入它们：
 
 ```js
 import sinon from 'sinon';
@@ -1626,13 +1797,23 @@ import { expect } from 'chai';
 
 and then use them in your tests like you normally do.
 
+然后在你的测试中像你通常那样使用它们。
+
 ### Initializing Test Environment
 
+### 初始化测试环境
+
 >Note: this feature is available with `react-scripts@0.4.0` and higher.
+>
+>注意：此功能可用在react-scripts@0.4.0及更高版本。
 
 If your app uses a browser API that you need to mock in your tests or if you just need a global setup before running your tests, add a `src/setupTests.js` to your project. It will be automatically executed before running your tests.
 
 For example:
+
+如果您的应用程序使用您需要模仿测试的浏览器API，或者在运行测试之前需要全局设置，请将`src/setupTests.js`添加到您的项目中。它将在运行测试之前自动执行。
+
+例如:
 
 #### `src/setupTests.js`
 ```js
@@ -1646,31 +1827,59 @@ global.localStorage = localStorageMock
 
 ### Focusing and Excluding Tests
 
+### 聚焦和排除测试
+
 You can replace `it()` with `xit()` to temporarily exclude a test from being executed.<br>
 Similarly, `fit()` lets you focus on a specific test without running any other tests.
+
+您可以用`xit()`替换`it()`以临时排除测试被执行。
+
+同样， `fit()` 可以让您专注于特定的测试，而无需运行任何其他测试。
 
 ### Coverage Reporting
 
 Jest has an integrated coverage reporter that works well with ES6 and requires no configuration.<br>
 Run `npm test -- --coverage` (note extra `--` in the middle) to include a coverage report like this:
 
+Jest有一个综合报道记者，与ES6工作良好，不需要配置。
+
+运行 `npm test -- --coverage`（在中间注意额外参数 `--`  ）包括覆盖率报告如下：
+
 ![coverage report](http://i.imgur.com/5bFhnTS.png)
 
 Note that tests run much slower with coverage so it is recommended to run it separately from your normal workflow.
 
+请注意，测试的运行速度要慢得多，因此建议您从正常的工作流程中分离运行它。
+
 ### Continuous Integration
+
+### 持续整合
 
 By default `npm test` runs the watcher with interactive CLI. However, you can force it to run tests once and finish the process by setting an environment variable called `CI`.
 
+默认情况下，`npm test`使用交互式CLI运行观察器。但是，您可以强制运行测试一次，并通过设置一个名为CI的环境变量来完成该过程。
+
 When creating a build of your application with `npm run build` linter warnings are not checked by default. Like `npm test`, you can force the build to perform a linter warning check by setting the environment variable `CI`. If any warnings are encountered then the build fails.
+
+当使用`npm run build`创建一个应用程序的构建时，默认情况下不会检查linter警告。像`npm test`一样，您可以通过设置环境变量CI来强制构建执行linter警告检查。如果遇到任何警告，则构建失败。
 
 Popular CI servers already set the environment variable `CI` by default but you can do this yourself too:
 
+流行的CI服务器默认已经设置了环境变量CI，但您也可以自己做这个：
+
 ### On CI servers
+
+### 在CI服务器上
+
 #### Travis CI
 
 1. Following the [Travis Getting started](https://docs.travis-ci.com/user/getting-started/) guide for syncing your GitHub repository with Travis.  You may need to initialize some settings manually in your [profile](https://travis-ci.org/profile) page.
+
+   遵循[Travis入门指南](https://docs.travis-ci.com/user/getting-started/)，将您的GitHub存储库与Travis同步。您可能需要在[个人资料](https://travis-ci.org/profile)页面中手动初始化某些设置。
+
 2. Add a `.travis.yml` file to your git repository.
+
+   将`.travis.yml`文件添加到git存储库。
 ```
 language: node_js
 node_js:
@@ -1684,9 +1893,17 @@ script:
   - npm run build
 ```
 1. Trigger your first build with a git push.
+
+   用`git push`来触发你的第一个build。
+
 2. [Customize your Travis CI Build](https://docs.travis-ci.com/user/customizing-the-build/) if needed.
 
+   如果需要，定制您的[Travis CI Build](https://docs.travis-ci.com/user/customizing-the-build/)。
+
 ### On your own environment
+
+### 在你自己的环境中
+
 ##### Windows (cmd.exe)
 
 ```cmd
@@ -1697,7 +1914,7 @@ set CI=true&&npm test
 set CI=true&&npm run build
 ```
 
-(Note: the lack of whitespace is intentional.)
+(Note: the lack of whitespace is intentional.注意：缺乏空白是有意的。)
 
 ##### Linux, macOS (Bash)
 
@@ -1711,13 +1928,23 @@ CI=true npm run build
 
 The test command will force Jest to run tests once instead of launching the watcher.
 
+测试命令将强制Jest运行测试一次，而不是启动观察器。
+
 >  If you find yourself doing this often in development, please [file an issue](https://github.com/facebookincubator/create-react-app/issues/new) to tell us about your use case because we want to make watcher the best experience and are open to changing how it works to accommodate more workflows.
+>
+>  如果您发现自己在开发中经常遇到这种情况，请[提出一个问题](https://github.com/facebookincubator/create-react-app/issues/new)来告诉我们您的用例，因为我们希望让观察者获得最佳体验，并且可以随时更改工作流程以适应更多的工作流程。
 
 The build command will check for linter warnings and fail if any are found.
 
+构建命令将检查linter警告，如果找到任何警告，则会失败。
+
 ### Disabling jsdom
 
+### 禁用jsdom
+
 By default, the `package.json` of the generated project looks like this:
+
+默认情况下，生成的项目的`package.json`如下所示：
 
 ```js
   // ...
@@ -1727,58 +1954,86 @@ By default, the `package.json` of the generated project looks like this:
   }
 ```
 
-If you know that none of your tests depend on [jsdom](https://github.com/tmpvar/jsdom), you can safely remove `--env=jsdom`, and your tests will run faster.<br>
-To help you make up your mind, here is a list of APIs that **need jsdom**:
+If you know that none of your tests depend on [jsdom](https://github.com/tmpvar/jsdom), you can safely remove `--env=jsdom`, and your tests will run faster.<br>To help you make up your mind, here is a list of APIs that **need jsdom**:
 
-* Any browser globals like `window` and `document`
+如果你知道你的测试都不依赖于[jsdom](https://github.com/tmpvar/jsdom)，你可以安全地删除`--env = jsdom`，这样你的测试运行得更快。
+
+为了帮助您解决问题，以下是需要jsdom的API列表：
+
+* Any browser globals like `window` and `document`　任何浏览器全局变量，如 `window` 和 `document`
 * [`ReactDOM.render()`](https://facebook.github.io/react/docs/top-level-api.html#reactdom.render)
 * [`TestUtils.renderIntoDocument()`](https://facebook.github.io/react/docs/test-utils.html#renderintodocument) ([a shortcut](https://github.com/facebook/react/blob/34761cf9a252964abfaab6faf74d473ad95d1f21/src/test/ReactTestUtils.js#L83-L91) for the above)
 * [`mount()`](http://airbnb.io/enzyme/docs/api/mount.html) in [Enzyme](http://airbnb.io/enzyme/index.html)
 
 In contrast, **jsdom is not needed** for the following APIs:
 
+相比之下，以下API不需要jsdom：
+
 * [`TestUtils.createRenderer()`](https://facebook.github.io/react/docs/test-utils.html#shallow-rendering) (shallow rendering)
 * [`shallow()`](http://airbnb.io/enzyme/docs/api/shallow.html) in [Enzyme](http://airbnb.io/enzyme/index.html)
 
 Finally, jsdom is also not needed for [snapshot testing](http://facebook.github.io/jest/blog/2016/07/27/jest-14.html).
 
+最后，[快照测试](http://facebook.github.io/jest/blog/2016/07/27/jest-14.html)也不需要jsdom。
+
 ### Snapshot Testing
+
+### 快照测试
 
 Snapshot testing is a feature of Jest that automatically generates text snapshots of your components and saves them on the disk so if the UI output changes, you get notified without manually writing any assertions on the component output. [Read more about snapshot testing.](http://facebook.github.io/jest/blog/2016/07/27/jest-14.html)
 
+快照测试是Jest的一个功能，可自动生成组件的文本快照并将其保存在磁盘上，以便在UI输出更改时，您可以在不在组件输出上手动写入任何断言的情况下获得通知。[阅读有关快照测试的更多信息.](http://facebook.github.io/jest/blog/2016/07/27/jest-14.html)
+
 ### Editor Integration
+
+### **编辑器集成**
 
 If you use [Visual Studio Code](https://code.visualstudio.com), there is a [Jest extension](https://github.com/orta/vscode-jest) which works with Create React App out of the box. This provides a lot of IDE-like features while using a text editor: showing the status of a test run with potential fail messages inline, starting and stopping the watcher automatically, and offering one-click snapshot updates.
 
+如果您使用[Visual Studio Code](https://code.visualstudio.com)，则有一个[Jest扩展名](https://github.com/orta/vscode-jest)可以与`Create React App`开箱即用。这在使用文本编辑器时提供了很多类似IDE的功能：使用潜在的故障消息内联显示测试运行的状态，自动启动和停止观察器，并提供一键式快照更新。
+
 ![VS Code Jest Preview](https://cloud.githubusercontent.com/assets/49038/20795349/a032308a-b7c8-11e6-9b34-7eeac781003f.png)
 
-<!--
 ## Developing Components in Isolation
+
+### 处于隔离状态开发组件
 
 Usually, in an app, you have a lot of UI components, and each of them has many different states.
 For an example, a simple button component could have following states:
 
-* With a text label.
-* With an emoji.
-* In the disabled mode.
+通常，在应用程序中，您有很多UI组件，并且每个都有许多不同的状态。例如，一个简单的按钮组件可以具有以下状态：
+
+* In a regular state, with a text label.在正常状态下，带有文本标签。
+* In the disabled mode.禁用模式。
+* In a loading state.加载状态。
 
 Usually, it’s hard to see these states without running a sample app or some examples.
 
-Create React App doesn’t include any tools for this by default, but you can easily add [React Storybook](https://github.com/kadirahq/react-storybook) to your project. **It is a third-party tool that lets you develop components and see all their states in isolation from your app**.
+通常，在不运行示例应用程序或一些示例的情况下，很难看到这些状态。
+
+Create React App doesn’t include any tools for this by default, but you can easily add  [Storybook for React](https://storybook.js.org/) ([source](https://github.com/storybooks/storybook)) to your project. **It is a third-party tool that lets you develop components and see all their states in isolation from your app**.
+
+默认情况下，Create React App不包含任何工具，但您可以轻松地将 [Storybook for React](https://storybook.js.org/) ([source](https://github.com/storybooks/storybook))添加到您的项目中。**它是一个第三方工具，可让您开发组件，并与您的应用程序隔离，查看所有状态。**
 
 ![React Storybook Demo](http://i.imgur.com/7CIAWpB.gif)
 
-You can also deploy your Storybook as a static app. This way, everyone in your team can view and review different states of UI components without starting a backend server or creating an account in your app.
+A storybook can also be deployed as a static app. This way, everyone in your team can view and review different states of UI components without starting a backend server or creating an account in your app.
 
-**Here’s how to setup your app with Storybook:**
+故事书也可以作为静态应用程序部署。这样，您的团队中的每个人都可以查看和查看UI组件的不同状态，而无需启动后端服务器或在应用程序中创建一个帐户。
+
+### Setup your app with Storybook
 
 First, install the following npm package globally:
 
+首先，全局安装以下npm软件包：
+
 ```sh
-npm install -g getstorybook
+npm install -g @storybook/cli
 ```
 
 Then, run the following command inside your app’s directory:
+
+然后，在你的应用程序的目录中运行以下命令：
 
 ```sh
 getstorybook
@@ -1786,45 +2041,56 @@ getstorybook
 
 After that, follow the instructions on the screen.
 
+之后，请按照屏幕上的说明进行操作。
+
 Learn more about React Storybook:
+
+了解更多关于React Storybook：
 
 * Screencast: [Getting Started with React Storybook](https://egghead.io/lessons/react-getting-started-with-react-storybook)
 * [GitHub Repo](https://github.com/kadirahq/react-storybook)
 * [Documentation](https://storybooks.js.org/docs/react-storybook/basics/introduction/)
 * [Snapshot Testing](https://github.com/kadirahq/storyshots) with React Storybook
-  -->
 
 ## Making a Progressive Web App
 
-By default, the production build is a fully functional, offline-first
-[Progressive Web App](https://developers.google.com/web/progressive-web-apps/).
+### 制作一个渐进的Web应用程序
+
+By default, the production build is a fully functional, offline-first [Progressive Web App](https://developers.google.com/web/progressive-web-apps/).
+
+默认情况下，生产构建的是一个功能齐全的离线优先的渐进式的Web应用程序。
 
 Progressive Web Apps are faster and more reliable than traditional web pages, and provide an engaging mobile experience:
 
+渐进式Web应用程序比传统网页更快，更可靠，并提供引人入胜的移动体验：
+
  * All static site assets are cached so that your page loads fast on subsequent visits, regardless of network connectivity (such as 2G or 3G). Updates are downloaded in the background.
+
+   所有静态网站资源均被缓存，无论网络连接是2G还是3G，您的网页在后续访问中都能快速加载。更新在后台下载。
+
  * Your app will work regardless of network state, even if offline. This means your users will be able to use your app at 10,000 feet and on the Subway.
+
+   无论网络状态如何，您的应用都会工作，即使离线。这意味着您的用户将能够在10,000英尺外的地铁上使用您的应用程序。
+
  * On mobile devices, your app can be added directly to the user's home screen, app icon and all. You can also re-engage users using web **push notifications**. This eliminates the need for the app store.
 
-The [`sw-precache-webpack-plugin`](https://github.com/goldhand/sw-precache-webpack-plugin)
-is integrated into production configuration,
-and it will take care of generating a service worker file that will automatically
-precache all of your local assets and keep them up to date as you deploy updates.
-The service worker will use a [cache-first strategy](https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/#cache-falling-back-to-network)
-for handling all requests for local assets, including the initial HTML, ensuring
-that you web app is reliably fast, even on a slow or unreliable network.
+   在移动设备上，您的应用程序可以将应用程序图标和其他所有的东西直接添加到用户的主屏幕。您也可以使用网络推送通知重新吸引用户。这样就省去了应用商店的需要。
 
-If you would prefer not to enable service workers prior to your initial
-production deployment, then remove the call to `serviceWorkerRegistration.register()`
-from [`src/index.js`](src/index.js).
+The [`sw-precache-webpack-plugin`](https://github.com/goldhand/sw-precache-webpack-plugin) is integrated into production configuration,and it will take care of generating a service worker file that will automatically precache all of your local assets and keep them up to date as you deploy updates. The service worker will use a [cache-first strategy](https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/#cache-falling-back-to-network) for handling all requests for local assets, including the initial HTML, ensuring that you web app is reliably fast, even on a slow or nreliable network.
 
-If you had previously enabled service workers in your production deployment and
-have decided that you would like to disable them for all your existing users,
-you can swap out the call to `serviceWorkerRegistration.register()` in
-[`src/index.js`](src/index.js) with a call to `serviceWorkerRegistration.unregister()`.
-After the user visits a page that has `serviceWorkerRegistration.unregister()`,
-the service worker will be uninstalled.
+ [`sw-precache-webpack-plugin`](https://github.com/goldhand/sw-precache-webpack-plugin) 被集成到生产配置中，它将负责生成一个服务工作者文件，它将自动预处理所有本地资源，并在部署更新时保持最新状态。服务工作者将使用缓存优先策略来处理本地资源的所有请求，包括初始HTML，确保您的Web应用程序可靠地快速运行，即使在较慢或不可靠的网络中。
+
+If you would prefer not to enable service workers prior to your initial production deployment, then remove the call to `serviceWorkerRegistration.register()` from [`src/index.js`](src/index.js).
+
+如果您不希望在初始生产部署之前启用服务工作者，请从 [`src/index.js`](src/index.js)中删除对 `serviceWorkerRegistration.register()`的调用。
+
+If you had previously enabled service workers in your production deployment and have decided that you would like to disable them for all your existing users, you can swap out the call to `serviceWorkerRegistration.register()` in [`src/index.js`](src/index.js) with a call to `serviceWorkerRegistration.unregister()`. After the user visits a page that has `serviceWorkerRegistration.unregister()`, the service worker will be uninstalled.
+
+如果您之前已经在生产部署中启用了服务工作者，并且已经决定要对所有现有用户禁用它们，您可以通过调用`serviceWorkerRegistration.unregister()`将 [`src/index.js`](src/index.js) 中调用的`serviceWorkerRegistration.register()`换掉。用户访问具有`serviceWorkerRegistration.unregister()`的页面后，服务工作者将被卸载。
 
 ### Offline-First Considerations
+
+### 离线优先注意事项
 
 1. Service workers [require HTTPS](https://developers.google.com/web/fundamentals/getting-started/primers/service-workers#you_need_https),
   although to facilitate local testing, that policy
@@ -1832,9 +2098,13 @@ the service worker will be uninstalled.
   If your production web server does not support HTTPS, then the service worker
   registration will fail, but the rest of your web app will remain functional.
 
+  服务工作者[需要HTTPS](https://developers.google.com/web/fundamentals/getting-started/primers/service-workers#you_need_https)，尽管为了方便本地测试，但该策略[不适用于localhost](http://stackoverflow.com/questions/34160509/options-for-testing-service-workers-via-http/34161385#34161385)。如果您的生产Web服务器不支持HTTPS，则服务工作者注册将失败，但您的Web应用程序的其余部分将保持有效。
+
 2. Service workers are [not currently supported](https://jakearchibald.github.io/isserviceworkerready/)
   in all web browsers. Service worker registration [won't be attempted](src/registerServiceWorker.js)
   on browsers that lack support.
+
+  所有网络浏览器[目前不支持](https://jakearchibald.github.io/isserviceworkerready/)服务工作者。在缺乏支持的浏览器上[不会尝试](src/registerServiceWorker.js)服务工作者注册。
 
 3. The service worker is only enabled in the [production environment](#deployment),
   e.g. the output of `npm run build`. It's recommended that you do not enable an
