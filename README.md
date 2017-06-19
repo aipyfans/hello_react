@@ -2104,7 +2104,7 @@ If you had previously enabled service workers in your production deployment and 
   in all web browsers. Service worker registration [won't be attempted](src/registerServiceWorker.js)
   on browsers that lack support.
 
-  所有网络浏览器[目前不支持](https://jakearchibald.github.io/isserviceworkerready/)服务工作者。在缺乏支持的浏览器上[不会尝试](src/registerServiceWorker.js)服务工作者注册。
+  所有网络浏览器[目前不支持](https://jakearchibald.github.io/isserviceworkerready/)服务工作者。在缺乏支持的浏览器上[不会尝试](src/registerServiceWorker.js)服务工作者的注册。
 
 3. The service worker is only enabled in the [production environment](#deployment),
   e.g. the output of `npm run build`. It's recommended that you do not enable an
@@ -2112,12 +2112,16 @@ If you had previously enabled service workers in your production deployment and 
   frustration when previously cached assets are used and do not include the latest
   changes you've made locally.
 
+  服务工作者只能在[生产环境](#deployment)中启用，例如`npm run build`的输出。建议您不要在开发环境中启用离线优先的服务工作者，因为在使用先前的缓存资源时可能会导致失败，并且不包括您在本地进行的最新更改。
+
 4. If you *need* to test your offline-first service worker locally, build
   the application (using `npm run build`) and run a simple http server from your
   build directory. After running the build script, `create-react-app` will give
   instructions for one way to test your production build locally and the [deployment instructions](#deployment) have
   instructions for using other methods. *Be sure to always use an
-  incognito window to avoid complications with your browser cache.*
+  incognito window to avoid complications with your browser cache.
+
+  如果您需要在本地测试您的离线优先的服务工作者，请构建应用程序（使用 `npm run build`），并从构建目录运行简单的http服务器。运行构建脚本后，`create-react-app`将给出本地测试生产环境的一种方法的说明，[部署说明](#deployment)有使用其他方法的说明。
 
 5. If possible, configure your production environment to serve the generated
   `service-worker.js` [with HTTP caching disabled](http://stackoverflow.com/questions/38843970/service-worker-javascript-update-frequency-every-24-hours).
@@ -2129,6 +2133,8 @@ If you had previously enabled service workers in your production deployment and 
   need to view your updated production deployment, performing a shift-refresh
   will temporarily disable the service worker and retrieve all assets from the
   network.
+
+  如果可能，请配置您的生产环境，以便为[禁用HTTP缓存](http://stackoverflow.com/questions/38843970/service-worker-javascript-update-frequency-every-24-hours)的生成的service-worker.js提供服务。如果这是不可能的 - 例如，[GitHub Pages](#github-pages)不允许您更改默认的10分钟HTTP缓存生命周期 - 然后请注意，如果您访问生产站点，然后在service-worker.js从HTTP缓存过期之前重新访问，您将继续从服务工作者获取先前缓存的资产。如果您立即需要查看更新的生产部署，执行班次刷新将暂时禁用服务工作者并从网络中检索所有资源。
 
 6. Users aren't always familiar with offline-first web apps. It can be useful to
   [let the user know](https://developers.google.com/web/fundamentals/instant-and-offline/offline-ux#inform_the_user_when_the_app_is_ready_for_offline_consumption)
@@ -2142,6 +2148,8 @@ If you had previously enabled service workers in your production deployment and 
   scenario, and which as a default, just logs appropriate messages to the
   JavaScript console.
 
+  用户并不总是熟悉离线优先的网络应用程序。让用户知道服务工作者何时完成填充缓存（显示“此Web应用程序脱机工作”消息），并让他们知道服务工作者在获取下次加载页面时可用的最新更新（显示“新内容可用;请刷新”消息）。显示此消息目前作为开发人员的练习，但作为起点，您可以使用 [`src/registerServiceWorker.js`](src/registerServiceWorker.js)中包含的逻辑，这表明哪些服务工作者生命周期事件要监听以检测每个场景，默认情况下，只需将适当的消息记录到JavaScript控制台。
+
 7. By default, the generated service worker file will not intercept or cache any
   cross-origin traffic, like HTTP [API requests](#integrating-with-an-api-backend),
   images, or embeds loaded from a different domain. If you would like to use a
@@ -2151,26 +2159,36 @@ If you had previously enabled service workers in your production deployment and 
   option in the `SWPrecacheWebpackPlugin` section of
   [`webpack.config.prod.js`](../config/webpack.config.prod.js).
 
+  默认情况下，生成的服务工作者文件将不会拦截或缓存任何跨原始流量，如HTTP API请求，图像或从其他域加载的嵌入。如果要对这些请求使用运行时缓存策略，可以弹出并在`webpack.config.prod.js`的`SWPrecacheWebpackPlugin`部分中配置`runtimeCaching`选项。
+
 ### Progressive Web App Metadata
 
-The default configuration includes a web app manifest located at
-[`public/manifest.json`](public/manifest.json), that you can customize with
-details specific to your web application.
+### 渐进式Web应用程序元数据
 
-When a user adds a web app to their homescreen using Chrome or Firefox on
-Android, the metadata in [`manifest.json`](public/manifest.json) determines what
-icons, names, and branding colors to use when the web app is displayed.
-[The Web App Manifest guide](https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/)
-provides more context about what each field means, and how your customizations
-will affect your users' experience.
+The default configuration includes a web app manifest located at　[`public/manifest.json`](public/manifest.json), that you can customize with details specific to your web application.
+
+默认配置包括位于[`public/manifest.json`](public/manifest.json)的Web应用程序清单，您可以使用特定于Web应用程序的详细信息进行自定义。
+
+When a user adds a web app to their homescreen using Chrome or Firefox on Android, the metadata in [`manifest.json`](public/manifest.json) determines what icons, names, and branding colors to use when the web app is displayed.
+[The Web App Manifest guide](https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/) provides more context about what each field means, and how your customizations will affect your users' experience.
+
+当用户在Android上使用Chrome或Firefox添加网页应用程序到主屏幕时，[`manifest.json`](public/manifest.json) 中的元数据决定了在显示Web应用程序时要使用的图标，名称和品牌颜色。[Web App清单指南](https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/) 提供了关于每个字段意味着什么的更多上下文信息，以及您的自定义将如何影响用户的体验。
 
 ## Deployment
 
+### 部署
+
 `npm run build` creates a `build` directory with a production build of your app. Set up your favourite HTTP server so that a visitor to your site is served `index.html`, and requests to static paths like `/static/js/main.<hash>.js` are served with the contents of the `/static/js/main.<hash>.js` file.
+
+`npm run build` 使用您的应用程序的生产构建创建了一个 `build` 目录。设置您最喜欢的HTTP服务器，以便为您的站点的访问者提供`index.html`，并且静态路径（如`/static/js/main.<hash>.js`）的请求将与 `/static/js/main.<hash>.js` 的内容一起提供。
 
 ### Static Server
 
+### 静态服务器
+
 For environments using [Node](https://nodejs.org/), the easiest way to handle this would be to install [serve](https://github.com/zeit/serve) and let it handle the rest:
+
+对于使用[Node](https://nodejs.org/)的环境，处理这种情况的最简单的方法是安装[服务](https://github.com/zeit/serve)并让其处理其余部分：
 
 ```sh
 npm install -g serve
@@ -2179,7 +2197,11 @@ serve -s build
 
 The last command shown above will serve your static site on the port **5000**. Like many of [serve](https://github.com/zeit/serve)’s internal settings, the port can be adjusted using the `-p` or `--port` flags.
 
+上面显示的最后一个命令将为端口5000上的静态站点提供服务。像许多[服务](https://github.com/zeit/serve)的内部设置一样，可以使用-p或--port标志调整端口。
+
 Run this command to get a full list of the options available:
+
+运行此命令以获取可用选项的完整列表：
 
 ```sh
 serve -h
@@ -2187,9 +2209,15 @@ serve -h
 
 ### Other Solutions
 
+### 其他解决方案
+
 You don’t necessarily need a static server in order to run a Create React App project in production. It works just as fine integrated into an existing dynamic one.
 
+您不一定需要静态服务器才能在生产中运行Create React App项目。它的工作原理同样适用于现有的动态应用程序。
+
 Here’s a programmatic example using [Node](https://nodejs.org/) and [Express](http://expressjs.com/):
+
+以下是使用[Node](https://nodejs.org/)和[Express](http://expressjs.com/)的编程示例：
 
 ```javascript
 const express = require('express');
@@ -2207,15 +2235,27 @@ app.listen(9000);
 
 The choice of your server software isn’t important either. Since Create React App is completely platform-agnostic, there’s no need to explicitly use Node.
 
+您的服务器软件的选择也不重要。由于Create React App完全与平台无关，因此无需明确使用Node。
+
 The `build` folder with static assets is the only output produced by Create React App.
+
+具有静态资源的 `build` 文件夹是由Create React App生成的唯一输出。
 
 However this is not quite enough if you use client-side routing. Read the next section if you want to support URLs like `/todos/42` in your single-page app.
 
+但是，如果您使用客户端路由，这还不够。如果您希望在单页应用程序中支持像 `/todos/42` 这样的URL，请阅读下一节。
+
 ### Serving Apps with Client-Side Routing
+
+### 使用客户端路由服务应用程序
 
 If you use routers that use the HTML5 [`pushState` history API](https://developer.mozilla.org/en-US/docs/Web/API/History_API#Adding_and_modifying_history_entries) under the hood (for example, [React Router](https://github.com/ReactTraining/react-router) with `browserHistory`), many static file servers will fail. For example, if you used React Router with a route for `/todos/42`, the development server will respond to `localhost:3000/todos/42` properly, but an Express serving a production build as above will not.
 
+如果您使用的是使用HTML5 [`pushState` history API](https://developer.mozilla.org/en-US/docs/Web/API/History_API#Adding_and_modifying_history_entries) 的路由器（例如，使用browserHistory的[React Router](https://github.com/ReactTraining/react-router) ），则许多静态文件服务器将失败。例如，如果您使用React Router作为`/todos/42`的路由，则开发服务器将正确响应`localhost:3000/todos/42`，但是Express将不会像上面所述那样服务于生产构建。
+
 This is because when there is a fresh page load for a `/todos/42`, the server looks for the file `build/todos/42` and does not find it. The server needs to be configured to respond to a request to `/todos/42` by serving `index.html`. For example, we can amend our Express example above to serve `index.html` for any unknown paths:
+
+这是因为当访问`/todos/42`有一个新的页面加载时，服务器查找文件`build/todos/42`，却找不到它。服务器需要配置为通过提供｀index.html｀来响应`/todos/42`的请求。例如，我们可以修改我们上面的Express示例，为任何未知路径提供`index.html`：
 
 ```diff
  app.use(express.static(path.join(__dirname, 'build')));
@@ -2228,6 +2268,8 @@ This is because when there is a fresh page load for a `/todos/42`, the server lo
 
 If you’re using [Apache](https://httpd.apache.org/), you need to create a `.htaccess` file in the `public` folder that looks like this:
 
+如果您使用[Apache](https://httpd.apache.org/)，则需要在`public`文件夹中创建一个`.htaccess`文件，如下所示：
+
 ```
     Options -MultiViews
     RewriteEngine On
@@ -2237,21 +2279,27 @@ If you’re using [Apache](https://httpd.apache.org/), you need to create a `.ht
 
 It will get copied to the `build` folder when you run `npm run build`.
 
+运行 `npm run build`时，它将被复制到 `build` 文件夹。
+
 Now requests to `/todos/42` will be handled correctly both in development and in production.
 
-On a production build, and in a browser that supports [service workers](https://developers.google.com/web/fundamentals/getting-started/primers/service-workers),
-the service worker will automatically handle all navigation requests, like for
-`/todos/42`, by serving the cached copy of your `index.html`. This
-service worker navigation routing can be configured or disabled by
-[`eject`ing](#npm-run-eject) and then modifying the
-[`navigateFallback`](https://github.com/GoogleChrome/sw-precache#navigatefallback-string)
-and [`navigateFallbackWhitelist`](https://github.com/GoogleChrome/sw-precache#navigatefallbackwhitelist-arrayregexp)
-options of the `SWPreachePlugin` [configuration](../config/webpack.config.prod.js).
+现在，对 `/todos/42` 的请求将在开发和生产中都被正确处理。
+
+On a production build, and in a browser that supports [service workers](https://developers.google.com/web/fundamentals/getting-started/primers/service-workers), the service worker will automatically handle all navigation requests, like for `/todos/42`, by serving the cached copy of your `index.html`. This
+service worker navigation routing can be configured or disabled by [`eject`ing](#npm-run-eject) and then modifying the [`navigateFallback`](https://github.com/GoogleChrome/sw-precache#navigatefallback-string) and [`navigateFallbackWhitelist`](https://github.com/GoogleChrome/sw-precache#navigatefallbackwhitelist-arrayregexp) options of the `SWPreachePlugin` [configuration](../config/webpack.config.prod.js).
+
+在生产构建中，在支持[服务工作者](https://developers.google.com/web/fundamentals/getting-started/primers/service-workers)的浏览器中，服务工作者将自动处理所有导航请求，像`/todos/42`,通过提供`index.html`的缓存副本。可以通过 [`eject`ing](#npm-run-eject) 配置或禁用此服务工作者导航路由，然后修改`SWPreachePlugin`配置的`navigateFallback`和`navigateFallbackWhitelist`选项。
 
 ### Building for Relative Paths
 
+### 相对路径建设
+
 By default, Create React App produces a build assuming your app is hosted at the server root.<br>
 To override this, specify the `homepage` in your `package.json`, for example:
+
+默认情况下，Create React App 会生成一个构建，假设您的应用程序是托管在服务器根目录下。
+
+要覆盖它，请指定`package.json`中的`homepage`，例如：
 
 ```js
   "homepage": "http://mywebsite.com/relativepath",
@@ -2259,11 +2307,19 @@ To override this, specify the `homepage` in your `package.json`, for example:
 
 This will let Create React App correctly infer the root path to use in the generated HTML file.
 
+这将使Create React App正确地推断在生成的HTML文件中使用的根路径。
+
 #### Serving the Same Build from Different Paths
 
+### 从不同的路径服务于同一构建
+
 >Note: this feature is available with `react-scripts@0.9.0` and higher.
+>
+>注意：此功能可用在react-scripts@0.9.0及更高版本。
 
 If you are not using the HTML5 `pushState` history API or not using client-side routing at all, it is unnecessary to specify the URL from which your app will be served. Instead, you can put this in your `package.json`:
+
+如果您没有使用HTML5 `pushState`历史API，或者根本不使用客户端路由，则无需指定您的应用程式将被送达的URL。相反，你可以把它放在你的`package.json`中：
 
 ```js
   "homepage": ".",
@@ -2271,9 +2327,13 @@ If you are not using the HTML5 `pushState` history API or not using client-side 
 
 This will make sure that all the asset paths are relative to `index.html`. You will then be able to move your app from `http://mywebsite.com` to `http://mywebsite.com/relativepath` or even `http://mywebsite.com/relative/path` without having to rebuild it.
 
+这将确保所有资产路源都相对于`index.html`。然后，您可以将您的应用程序从`http://mywebsite.com`移动到`http://mywebsite.com/relativepath`或`http://mywebsite.com/relative/path`，而无需重新构建它。
+
 ### Azure
 
 See [this](https://medium.com/@to_pe/deploying-create-react-app-on-microsoft-azure-c0f6686a4321) blog post on how to deploy your React app to [Microsoft Azure](https://azure.microsoft.com/).
+
+请参阅[此博文](https://medium.com/@to_pe/deploying-create-react-app-on-microsoft-azure-c0f6686a4321) ，了解如何将React应用程序部署到 [Microsoft Azure](https://azure.microsoft.com/)。
 
 ### Firebase
 
@@ -2339,6 +2399,8 @@ For more information see [Add Firebase to your JavaScript Project](https://fireb
 ### GitHub Pages
 
 >Note: this feature is available with `react-scripts@0.2.0` and higher.
+>
+>注意：此功能可用在react-scripts@0.2.0及更高版本。
 
 #### Step 1: Add `homepage` to `package.json`
 
