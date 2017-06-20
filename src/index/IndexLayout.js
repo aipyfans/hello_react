@@ -15,12 +15,12 @@ class IndexLayout extends Component {
                 <div>
 
                     <header>
-                        <p>前端学习-Demo</p>
+                        <p>前端学习-Demo [ JavaScript & Html & Css & Sass & React-Bootstrap & React-Router-Dom & React]</p>
                     </header>
 
                     <nav>
                         <ul>
-                            <li><NavLink to="/home" activeClassName={"Actived"}>Home</NavLink></li>
+                            <li><NavLink exact to="/" activeClassName={"Actived"}>Home</NavLink></li>
                             <li><NavLink to="/html" activeClassName={"Actived"}>Html</NavLink></li>
                             <li><NavLink to="/css" activeClassName={"Actived"}>Css</NavLink></li>
                             <li><NavLink to="/other" activeClassName={"Actived"}>Other</NavLink></li>
@@ -28,7 +28,7 @@ class IndexLayout extends Component {
                     </nav>
 
                     <section>
-                        <Route exact path="/home" component={Home}/>
+                        <Route exact path="/" component={Home}/>
                         <Route path="/html" component={Html}/>
                         <Route path="/css" component={Css}/>
                         <Route path="/other" component={Other}/>
