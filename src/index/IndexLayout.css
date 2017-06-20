@@ -1,0 +1,41 @@
+header {
+    background-color: #efefef;
+    font-size: 24px;
+    border: 1px solid transparent;
+}
+
+nav {
+    background-color: #3a9d9a;
+}
+
+nav ul {
+    margin: 0px;
+    list-style-type: none;
+    padding: 16px;
+}
+
+nav ul li {
+    display: inline;
+    padding: 16px;
+}
+
+a {
+    text-decoration: none;
+    color: #c8b99c;
+}
+
+.Actived {
+    color: #aae5d0;
+}
+
+
+section {
+    background-color: white;
+    height: 480px;
+}
+
+footer {
+    background-color: #efefef;
+    text-align: center;
+    height: 32px;
+}

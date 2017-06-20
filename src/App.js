@@ -7,8 +7,9 @@ import './App.css';
 // import Html5 from "./other/Html5";
 // import HtmlBase from "./html/HtmlBase";
 // import CssBase from "./css/CssBase";
+// import Layout from "./css/Layout";
 
-import Layout from "./css/Layout";
+import IndexLayout from "./index/IndexLayout";
 
 
 class App extends Component {
@@ -26,7 +27,7 @@ class App extends Component {
                     {/*To get started, edit <code>src/App.js</code> and save to reload.*/}
                 {/*</p>*/}
 
-                <Layout/>
+                <IndexLayout/>
 
             </div>
         );
