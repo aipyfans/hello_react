@@ -1,0 +1,8 @@
+@import '../../styles/Screen.scss';
+
+.Login{
+  width: 400px;
+  height: 200px;
+  text-align: left;
+  @include HvCenter;
+}

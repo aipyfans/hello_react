@@ -1,0 +1,27 @@
+table {
+  margin-left: 20px;
+  margin-right: 20px;
+  border: thin solid black;
+  caption-side: bottom;
+  border-spacing: 2px 6px;
+  border-collapse: collapse; }
+
+td, th {
+  border: thin dotted gray;
+  padding: 5px; }
+
+th {
+  background-color: #cc6600; }
+
+.Table-Cellcolor {
+  background-color: #fcba7a; }
+
+tr:nth-child(odd) {
+  background-color: #fcba7a; }
+
+tr:nth-child(even) {
+  background-color: #adbc4a; }
+
+caption {
+  font-style: italic;
+  padding-top: 8px; }

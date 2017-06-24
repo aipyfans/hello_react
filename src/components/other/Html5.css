@@ -1,0 +1,52 @@
+header {
+  min-height: 80px;
+  background-color: brown; }
+
+nav {
+  background-color: #efe5d0;
+  margin: 10px 10px 0px 10px; }
+
+nav ul {
+  margin: 0px;
+  list-style-type: none;
+  padding: 5px 0px 5px 0px; }
+
+nav ul li {
+  display: inline;
+  padding: 5px 10px 5px 10px; }
+
+nav ul li a:link, nav ul li a:visited {
+  color: #954b4b;
+  border-bottom: none;
+  font-weight: bold; }
+
+nav ul li.selected {
+  background-color: #c8b99c; }
+
+div#tableContainer {
+  display: table;
+  border-spacing: 10px;
+  background-color: blueviolet;
+  width: 100%;
+  min-height: 320px; }
+
+div#tableRow {
+  display: table-row; }
+
+section#drinks {
+  display: table-cell;
+  background-color: #efe5f0;
+  width: 20%; }
+
+section#blog {
+  display: table-cell;
+  background: #aae5d0; }
+
+aside {
+  display: table-cell;
+  background: #dde5f0; }
+
+footer {
+  background-color: #675c47;
+  text-align: center;
+  min-height: 80px; }
