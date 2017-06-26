@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
-import './Home.css';
+import './Medica.css';
 
-class Home extends Component {
+class Medica extends Component {
 
     render() {
         return (
-                <div>
-                    home
-                </div>
+            <div>
+                <p>Medica</p>
+            </div>
         );
     }
 
 }
 
-export default Home;
+export default Medica;

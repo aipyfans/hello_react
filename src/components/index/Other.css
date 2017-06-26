@@ -1,6 +1,14 @@
-.Other {
-  padding: 16px; }
+.Other-nav {
+  background-color: lightgray;
+  float: left;
+  width: 20%;
+  min-height: 480px;
+  height: auto; }
 
-.Well {
-  max-width: 400px;
-  margin: 0 auto 10px; }
+.Other-section {
+  margin-left: 20%;
+  min-height: 880px;
+  background-color: #efe5d0; }
+
+.Other-actived {
+  color: #fbff05; }

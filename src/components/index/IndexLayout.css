@@ -3,21 +3,8 @@ header {
   font-size: 24px;
   border: 1px solid transparent; }
 
-nav {
-  background-color: #3a9d9a; }
-
-nav ul {
-  margin: 0px;
-  list-style-type: none;
-  padding: 16px; }
-
-nav ul li {
-  display: inline;
-  padding: 16px; }
-
-nav ul li a {
-  text-decoration: none;
-  color: #aae5d0; }
+.navbar-custom {
+  margin-bottom: 0px; }
 
 .Actived {
   color: #fbff05; }
