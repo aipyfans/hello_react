@@ -24,7 +24,7 @@ nav ul li a {
 
 section {
   background-color: white;
-  height: 480px; }
+  min-height: 480px; }
 
 footer {
   background-color: #efefef;
