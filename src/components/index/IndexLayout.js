@@ -20,14 +20,14 @@ class IndexLayout extends Component {
         const currentBaseUrl = this.props.match.url;
 
         return (
-            <div>
+            <div className="IL-div">
 
                 <header>
                     <p>前端学习-Demo [ JavaScript & Html & Css & Sass & React-Bootstrap & React-Router-Dom & React]</p>
                 </header>
 
 
-                <Navbar collapseOnSelect>
+                <Navbar collapseOnSelect className="navbar-bottom">
 
                     <Navbar.Header>
                         <Navbar.Brand>
@@ -39,12 +39,18 @@ class IndexLayout extends Component {
                     <Navbar.Collapse>
 
                         <Nav >
-                            <NavItem eventKey={1}><NavLink exact to={currentBaseUrl}
-                                                           activeClassName={"Actived"}>Home</NavLink></NavItem>
-                            <NavItem eventKey={2}><NavLink to={`${currentBaseUrl}/html`} activeClassName={"Actived"}>Html</NavLink></NavItem>
-                            <NavItem eventKey={3}><NavLink to={`${currentBaseUrl}/css`}
-                                                           activeClassName={"Actived"}>Css</NavLink></NavItem>
-                            <NavItem eventKey={4}><NavLink to={`${currentBaseUrl}/other`} activeClassName={"Actived"}>Other</NavLink></NavItem>
+                            <NavItem eventKey={1}>
+                                <NavLink exact to={currentBaseUrl} activeClassName={"Actived"}>Home</NavLink>
+                            </NavItem>
+                            <NavItem eventKey={2}>
+                                <NavLink to={`${currentBaseUrl}/html`} activeClassName={"Actived"}>Html</NavLink>
+                            </NavItem>
+                            <NavItem eventKey={3}>
+                                <NavLink to={`${currentBaseUrl}/css`} activeClassName={"Actived"}>Css</NavLink>
+                            </NavItem>
+                            <NavItem eventKey={4}>
+                                <NavLink to={`${currentBaseUrl}/other`} activeClassName={"Actived"}>Other</NavLink>
+                            </NavItem>
 
                             <NavDropdown eventKey={5} title="下拉菜单" id="basic-nav-dropdown">
                                 <MenuItem eventKey={5.1}>Action1</MenuItem>
