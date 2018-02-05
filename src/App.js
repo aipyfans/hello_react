@@ -1,26 +1,21 @@
 import React, {Component} from 'react';
+
+import Header from './nav/Header';
+import Body from './nav/Body';
+
+import {BrowserRouter} from 'react-router-dom';
 import './App.css';
 
-
-import {BrowserRouter as Router} from 'react-router-dom';
-import RouteSwitch from './components/RouteSwitch';
-
-
-class App extends Component {
-
+// @flow
+export default class App extends Component {
     render() {
         return (
-            <div className="App">
-
-
-                <Router>
-                    <RouteSwitch />
-                </Router>
-
-            </div>
+            <BrowserRouter>
+                <div>
+                    <Header/>
+                    <Body/>
+                </div>
+            </BrowserRouter>
         );
     }
-
 }
-
-export default App;
