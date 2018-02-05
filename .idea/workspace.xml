@@ -2,6 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b0b8cef7-bfc0-4fb8-9033-da6ecf7d6293" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/favicon.ico" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/static/media/glyphicons-halflings-regular.448c34a5.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/static/media/glyphicons-halflings-regular.e18bbf61.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/static/media/glyphicons-halflings-regular.f4769f9b.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/static/media/glyphicons-halflings-regular.fa277232.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/asset-manifest.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/manifest.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/service-worker.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/static/css/main.48cbc0d3.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/static/css/main.48cbc0d3.css.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/static/js/main.83c11b43.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/static/js/main.83c11b43.js.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/static/media/glyphicons-halflings-regular.89889688.svg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -158,15 +172,15 @@
     <property name="add_unversioned_files" value="$PROJECT_DIR$/src/components/index/Other.css&#10;true&#10;/home/william/Develop/WorkSpace/React/QuickStart/hello_react/src/components/user/Login.css" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/docs" />
       <recent name="$PROJECT_DIR$/src/components/bootstrap" />
       <recent name="$PROJECT_DIR$/src/components" />
       <recent name="$PROJECT_DIR$/src/styles" />
       <recent name="$PROJECT_DIR$/src/components/user" />
-      <recent name="$PROJECT_DIR$" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/components" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -336,7 +350,7 @@
       <workItem from="1500690331545" duration="187000" />
       <workItem from="1500975615739" duration="158000" />
       <workItem from="1501639849584" duration="136000" />
-      <workItem from="1517793724367" duration="756000" />
+      <workItem from="1517793724367" duration="839000" />
     </task>
     <task id="LOCAL-00001" summary="html5 and tables">
       <created>1496831161038</created>
@@ -436,11 +450,18 @@
       <option name="project" value="LOCAL" />
       <updated>1517794164751</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="在根目录下添加docs文件夹">
+      <created>1517794502469</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1517794502469</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120714000" />
+    <option name="totallyTimeSpent" value="120797000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -491,7 +512,8 @@
     <MESSAGE value="add react-bootstrap lib of nav" />
     <MESSAGE value="add react-bootstrap lib of navbar" />
     <MESSAGE value="删除原有的代码,重新写了一遍" />
-    <option name="LAST_COMMIT_MESSAGE" value="删除原有的代码,重新写了一遍" />
+    <MESSAGE value="在根目录下添加docs文件夹" />
+    <option name="LAST_COMMIT_MESSAGE" value="在根目录下添加docs文件夹" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -507,13 +529,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="20" column="15" lean-forward="true" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="SECOND">
@@ -879,6 +894,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
           <caret line="12" column="26" lean-forward="true" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/static/js/main.83c11b43.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2940">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
